@@ -28,9 +28,16 @@ def net_income_test(total_income, fam_members, emp_fam_members, city_of_res):
 	income = total_income - (90 * emp_fam_members)
 
 	if city_of_res in REGION_1:
-		return income < REGION_1_MBSAC[fam_members] 
+		try:
+			return income < REGION_1_MBSAC[fam_members] 
+		except KeyError:
+			return income < REGION_1_MBSAC[10] 
 	else:
-		return income < REGION_2_MBSAC[fam_members]
+		try:
+			return income < REGION_2_MBSAC[fam_members]
+		except KeyError:
+			return income < REGION_2_MBSAC[10] 
+
 
 # nonexempt: "unearned" income that is not disability-based (ie unemployment income or child/spousal support for C,E).  
 family = {1:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
@@ -55,40 +62,39 @@ def family_calc(family, factor, income_type):
 			total += family[member][income_type]
 	return total
 
-# def pass_section_a(family):
-# 	""" Returns whether a family passes section A of CalWORKS Budget Worksheet
+
+def pass_section_a(family):
+	""" Returns whether a family passes section A of CalWORKS Budget Worksheet
 
 
-# 	"""
+	"""
 
-# 	line_1 = family_calc(family, 'dis_based_unearned', 'dis_based_unearned')
-# 	# for member in family:
-# 	# 	if member['dis_based_unearned']:
-# 	# 		line1 += member['dis_based_unearned']
-# 	line_3 = line_1 - 225
-# 	line_4 = family_calc( family, 'ABCDE', 'income')
-# 	# for member in family:
-# 	# 	if member['ABCDE']:
-# 	# 		line_4 += member['income']
-# 	line_6 = line_4 - line_3
-# 	# line_7 = line_6 / 2
-# 	# line_8 = line_6 - line_7
-# 	line_8  = line_6 / 2
-# 	line_9 = line_3 if line_3 > 0 else 0
-# 	line_10 = family_calc('nonexempt_income', 'nonexempt_income')
-# 	line_11 = line_8 + line_9 + line_10
-# 	line_12 = 0
-# 	for member in family:
-# 		if member['ABCDE'] in ['A', 'B'] and member['child/spousal_support']:
-# 			line_12 += member['child/spousal_support']
-# 	Line_13 = "waiting on Daniel"
-# 	line_14 = line_12 - line_13
-# 	line_15 = line_14 + line_11
-# 	line_16 = ???
-# 	if line_15 < line_16:
-# 		return min[line_11, line_15]
-# 	else: 
-# 		return  False
+	pass
+
+	# line_1 = family_calc(family, 'dis_based_unearned', 'dis_based_unearned')
+	# line_3 = line_1 - 225
+	# line_4 = family_calc( family, 'ABCDE', 'income')
+	# line_6 = line_4 - line_3
+	# # line_7 = line_6 / 2
+	# # line_8 = line_6 - line_7
+	# line_8  = line_6 / 2
+	# line_9 = line_3 if line_3 > 0 else 0
+	# line_10 = family_calc('nonexempt_income', 'nonexempt_income')
+	# line_11 = line_8 + line_9 + line_10
+	
+	# line_12 = 0
+	# for member in family:
+	# 	if family[member]['ABCDE'] in ['A', 'B'] and family[member]['child/spousal_support']:
+	# 		line_12 += family[member]['child/spousal_support']
+	
+	# Line_13 = ???
+	# line_14 = line_12 - line_13
+	# line_15 = line_14 + line_11
+	# line_16 = ???
+
+	# result = min[line_11, line_15] if line_15 < line_16 else False
+
+	# return  result
 
 
 def calc_members_in_categories(family, categories):
@@ -135,14 +141,20 @@ def calc_MAP (fam_members, city):
 	"""
 
 	if city in REGION_1:
-		return REGION_1_MAP[fam_members]
+		try:
+			return REGION_1_MAP[fam_members]
+		except KeyError:
+			return REGION_1_MAP[10]
 	else:
-		return REGION_2_MAP[fam_members]
+		try: 
+			return REGION_2_MAP[fam_members]
+		except KeyError:
+			return REGION_2_MAP[10]
 
 
 
 def grant_computation (family, city, line_18_a):
-	"""computes total grant for family
+	"""computes total grant for family (Section B of CalWORKS Budget Worksheet)
 
 	must pass family, city, and results of pass_section_a
 
@@ -158,6 +170,7 @@ def grant_computation (family, city, line_18_a):
 	336
 
 	"""
+
 	AC_members = calc_members_in_categories(family, ['A', 'C'])
 
 	line_18 = calc_MAP(AC_members, city)
@@ -173,10 +186,10 @@ def grant_computation (family, city, line_18_a):
 	return min([line_19, line_18_c])
 
 
+def calc_prorated_amt(aid_payment, date):
+	"""calculates prorated payment for the month"""
 
-
-
-
+	pass
 
 
 

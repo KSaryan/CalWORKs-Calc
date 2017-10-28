@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="fam-mems">
+<div class="row">
+<form class="form-horizontal" id = 1 >
+<fieldset>
+
+<!-- Form Name -->
+<legend>Member 1</legend>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ABCDE">Category</label>
+  <div class="col-md-4">
+    <select id="ABCDE" name="ABCDE" class="form-control">
+      <option value="None"> Choose a Category</option>
+      <option value="A">A (AU (non MFG and non-penalized))</option>
+      <option value="B">B (Penalized AU)</option>
+      <option value="C">C (non-AU (if income counted or ineligible non citizen)</option>
+      <option value="D">D (MFG)</option>
+      <option value="E">E (SANCTIONED)</option>
+      <option value="None">None</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="income">Monthly Income</label>  
+  <div class="col-md-4">
+  <input name="income" type="number" placeholder="#" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="mem-sub"> </label>
+  <div class="col-md-8">
+    <button name="mem-sub" class="btn btn-success save-mem-btn" data-form = 1 >Save</button>
+    <button name="add" class="btn btn-primary save-and-add-mem-btn" data-form = 1>Save And Add Another Member</button>
+  </div>
+</div>
+
+</form>
+</div>
+</div>
+
+<hr>
+
+<div class="row">
+  <form action= "/calc_grant" method="POST">
+    <input type="hidden" value="" name= "family" id= "family"></input>
+    <input type="hidden" value={{ city }} name="city" id="city"></input>
+    <input type="submit" id="calc-btn" class="btn btn-primary" value = "Calculate Family Grant"> </input>
+  </form>
+</div>
+
+{% endblock %}
+
+{% block script %}  
+<script type="text/javascript" src='/static/fam_form.js'></script> 
+{% endblock %}
