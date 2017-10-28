@@ -3,11 +3,12 @@
 {% block content %}
 <div id="fam-mems">
 <div class="row">
+
 <form class="form-horizontal" id = 1 >
 <fieldset>
 
 <!-- Form Name -->
-<legend>Member 1</legend>
+<legend>Family Member 1</legend>
 
 <!-- Select Basic -->
 <div class="form-group">
@@ -42,7 +43,7 @@
     <button name="add" class="btn btn-primary save-and-add-mem-btn" data-form = 1>Save And Add Another Member</button>
   </div>
 </div>
-
+</fieldset>
 </form>
 </div>
 </div>
@@ -54,6 +55,7 @@
     <input type="hidden" value="" name= "family" id= "family"></input>
     <input type="hidden" value={{ city }} name="city" id="city"></input>
     <input type="submit" id="calc-btn" class="btn btn-primary" value = "Calculate Family Grant"> </input>
+  
   </form>
 </div>
 

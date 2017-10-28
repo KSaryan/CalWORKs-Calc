@@ -15,7 +15,7 @@ function addMember(evt){
 <form class="form-horizontal" id = ${idName} >
 <fieldset>
 
-<legend>Member ${idName} </legend>
+<legend> Family Member ${idName} </legend>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="ABCDE">Category</label>
@@ -47,6 +47,8 @@ function addMember(evt){
     <button name="add" class="btn btn-primary save-and-add-mem-btn" data-form = ${idName}>Save And Add Another Member</button>
   </div>
 </div>`);
+
+  addEventListeners();
 }
 
 
@@ -70,8 +72,12 @@ function displayInfo(result){
 }
 
 // event listeners
-$('.save-mem-btn').on('click', function(evt){saveMember(evt);})
-$('.save-and-add-mem-btn').on('click', function(evt){saveMember(evt); addMember(evt)})
+function addEventListeners(){
+  $('.save-mem-btn').on('click', function(evt){saveMember(evt);});
+  $('.save-and-add-mem-btn').on('click', function(evt){saveMember(evt); addMember(evt)});
+}
+
+addEventListeners();
 
 
 

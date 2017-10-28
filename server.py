@@ -27,7 +27,7 @@ def show_homepage():
 
 @app.route('/passed_net_income_test', methods=["POST"])
 def check_net_income():
-	"""checks if family passes net_income_test and redirects user accordingly"""
+	"""Checks if family passes net_income_test and redirects user accordingly"""
 
 	total_income = int(request.form.get('income'))
 	fam_members = int(request.form.get('fammembers'))
@@ -57,7 +57,6 @@ def cal_grant():
 		return render_template('grant.html', grant=grant)
 	else:
 		return redirect ('/sorry')
-
 
 
 @app.route('/sorry')
