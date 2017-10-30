@@ -79,11 +79,12 @@ You can now navigate to 'localhost:5000/' to access CALWorks Caculator.
 To run tests:
 
 ```
-python -m doctest -v calworks.py
+python calworks.py
 ```
 
 ## <a name="todo"></a> To Do
 
-- [ ] Last of backend logic for calculating grant
+- [X] Last of backend logic for calculating grant
+- [ ] Finish unit testing in calworks.py
 - [ ] Integration testing
 - [ ] Launch
