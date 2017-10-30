@@ -8,6 +8,7 @@ The CALWorks Calculator is designed to help non-profit workers estimate the CALW
 * [Features](#features)
 * [Installation](#install)
 * [Testing](#testing)
+* [To Do](#todo)
 
 ## <a name="technologies"></a>Technologies
 <b>Backend:</b> Python, Flask<br/>
@@ -32,7 +33,7 @@ And will be reminded to save before submitting
 Once again, they can review information before submitting
 ![alt text](screenshots/confirm-Info-2.png "Confirmation on Family Form Page")
 
-They will then get the family' grant amount
+They will then get the family's grant amount
 ![alt text](screenshots/filter-locations.png "Filter Locations")
 
 Or a sorry message
@@ -80,3 +81,8 @@ To run tests:
 ```
 python -m doctest -v calworks.py
 ```
+
+## <a name="todo"></a> To Do
+
+- [] Last of backend logic for calculating grant
+- [] Integration testing
