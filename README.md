@@ -30,13 +30,13 @@ And will be reminded to save before submitting
 ![alt text](screenshots/unsaved-info.png "Warning Message")
 
 Once again, they can review information before submitting
-![alt text](screenshots/nearby-locations-1.png "Nearby Locations 1")
+![alt text](screenshots/confirm-info-2.png "Confirmation on Family Form Page")
 
 They will then get the family' grant amount
 ![alt text](screenshots/filter-locations.png "Filter Locations")
 
 Or a sorry message
-![alt text](screenshots/login.png "Login Modal")
+![alt text](screenshots/sorry.png "Sorry Message")
 
 
 
