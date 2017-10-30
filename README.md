@@ -86,5 +86,6 @@ python calworks.py
 
 - [X] Last of backend logic for calculating grant
 - [ ] Finish unit testing in calworks.py
+- [ ] Footnotes
 - [ ] Integration testing
 - [ ] Launch
