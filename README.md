@@ -84,5 +84,5 @@ python -m doctest -v calworks.py
 
 ## <a name="todo"></a> To Do
 
-- [] Last of backend logic for calculating grant
-- [] Integration testing
+- [ ] Last of backend logic for calculating grant
+- [ ] Integration testing
