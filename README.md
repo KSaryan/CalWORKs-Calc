@@ -15,19 +15,19 @@ The CALWorks Calculator is designed to help non-profit workers estimate the CALW
 
 ## <a name="features"></a>Features
 User fills out inital information on a family
-![alt text](screenshots/homepage "Homepage")
+![alt text](screenshots/homepage.png "Homepage")
 
 They need to confirm information
-![alt text](screenshots/confirm-info-1 "Confirmation on Homepage")
+![alt text](screenshots/confirm-info-1.png "Confirmation on Homepage")
 
 If the family passes the net income test, they will fill out more information on the family
-![alt text](screenshots/1familymember "Family Info Form")
+![alt text](screenshots/1familymember.png "Family Info Form")
 
 They can add and remove members
-![alt text](screenshots/2familymembers "2 Family Members")
+![alt text](screenshots/2familymembers.png "2 Family Members")
 
 And will be reminded to save before submitting
-![alt text](screenshots/unsaved-info "Warning Message")
+![alt text](screenshots/unsaved-info.png "Warning Message")
 
 Once again, they can review information before submitting
 ![alt text](screenshots/nearby-locations-1.png "Nearby Locations 1")
