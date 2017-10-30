@@ -4,11 +4,14 @@ let famObj = {};
 function addMember(evt){
   evt.preventDefault();
 
+  // disable button
   $(evt.target).attr("disabled", "disabled");
 
+  // get number for next family memeber
   let data = $(evt.target).data("form");
   let idName = data + 1; 
 
+  // adding another family member to DOM
   $('#fam-mems').append(`<div class="row">
 <form class="form-horizontal" id = ${idName} >
 <fieldset>
@@ -47,6 +50,7 @@ function addMember(evt){
   </div>
 </div>`);
 
+  // adding event listeners
   addEventListeners();
 }
 
@@ -67,15 +71,7 @@ function saveMember(evt){
   famObj[data] = memObj;
   $('#family').val(JSON.stringify(famObj));
 
-  console.log(famObj);
-  $('#fam-table').empty();
-  for (member in famObj){
-    $('#fam-table').append(`<tr>
-              <td>Member ${member}</td>
-              <td>${famObj[member]['income']}</td>
-              <td>${famObj[member]['ABCDE']}</td>
-            </tr>`);
-  }
+  updateModal();
 }
 
 // create warning to user to remember to save
@@ -95,14 +91,29 @@ function clearWarning(evt){
 // remove a family member
 function removeMember(evt){
   let data = $(evt.target).data("form");
-  // $("#"+data).remove();
   $("#"+data).parent().remove();
   let prevMember = data - 1;
   $('.btn' + prevMember).attr("disabled", false);
 
+  delete famObj[data];
+
+  updateModal();
+
 }
 
-// event listeners
+// update info in modal
+function updateModal(){
+  $('#fam-table').empty();
+  for (member in famObj){
+    $('#fam-table').append(`<tr>
+                           <td>Member ${member}</td>
+                           <td>${famObj[member]['income']}</td>
+                           <td>${famObj[member]['ABCDE']}</td>
+                           </tr>`)
+  }
+}
+
+// event listeners for individual family member forms
 function addEventListeners(){
   $('.save-mem-btn').on('click', function(evt){saveMember(evt); clearWarning(evt);});
   $('.save-and-add-mem-btn').on('click', function(evt){addMember(evt)});
@@ -113,9 +124,10 @@ function addEventListeners(){
 
 addEventListeners();
 
-$('#calc-btn').click(function(evt){evt.preventDefault(); $('#fam-modal').modal('show');})
 
-
+// event listeners for final submission
+$('#calc-btn').click(function(evt){evt.preventDefault(); $('#fam-modal').modal('show');});
+$('#submitmodal-fam').click(function(){$('#fam-modal').modal('hide'); $('#calc-grant').submit();});
 
 
 
