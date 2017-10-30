@@ -55,7 +55,7 @@ def cal_grant():
 	city = request.form.get('city').replace("-", " ")
 	
 
-	result = pass_section_a(family)
+	result = pass_section_a(family, city)
 	if result:
 		grant = grant_computation(family, city, result)
 		return render_template('grant.html', grant=grant)

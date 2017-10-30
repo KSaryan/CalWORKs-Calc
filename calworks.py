@@ -39,13 +39,6 @@ def net_income_test(total_income, fam_members, emp_fam_members, city_of_res):
 			return income < REGION_2_MBSAC[10] 
 
 
-# nonexempt: "unearned" income that is not disability-based (ie unemployment income or child/spousal support for C,E).  
-family = {1:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
-		  2:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'B', 'child/spousal_support': None},
-		  3:{'income': 100, 'dis_based_unearned': None, 'nonexempt_income': 10, 'ABCDE': 'C', 'child/spousal_support': None},
-		  4: {'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': None , 'child/spousal_support': None}}
-		  
-
 def family_calc(family, factor, income_type):
 	"""calculates total of certain kinds of income for family memebers who fit a certain factor
 
@@ -59,42 +52,39 @@ def family_calc(family, factor, income_type):
 	total = 0
 	for member in family:
 		if family[member][factor]:
-			total += family[member][income_type]
+			total += int(family[member][income_type])
 	return total
 
 
-def pass_section_a(family):
+def pass_section_a(family, city):
 	""" Returns whether a family passes section A of CalWORKS Budget Worksheet
 
 
 	"""
-
-	pass
-
-	# line_1 = family_calc(family, 'dis_based_unearned', 'dis_based_unearned')
-	# line_3 = line_1 - 225
-	# line_4 = family_calc( family, 'ABCDE', 'income')
-	# line_6 = line_4 - line_3
-	# # line_7 = line_6 / 2
-	# # line_8 = line_6 - line_7
-	# line_8  = line_6 / 2
-	# line_9 = line_3 if line_3 > 0 else 0
-	# line_10 = family_calc('nonexempt_income', 'nonexempt_income')
-	# line_11 = line_8 + line_9 + line_10
+	line_1 = family_calc(family, 'dis_based_unearned', 'dis_based_unearned')
+	line_3 = line_1 - 225
+	line_4 = family_calc(family, 'ABCDE', 'income')
+	line_6 = line_4 - line_3
+	# line_7 = line_6 / 2
+	# line_8 = line_6 - line_7
+	line_8  = line_6 / 2
+	line_9 = line_3 if line_3 > 0 else 0
+	line_10 = family_calc(family, 'nonexempt_income', 'nonexempt_income')
+	line_11 = line_8 + line_9 + line_10
 	
-	# line_12 = 0
-	# for member in family:
-	# 	if family[member]['ABCDE'] in ['A', 'B'] and family[member]['child/spousal_support']:
-	# 		line_12 += family[member]['child/spousal_support']
+	line_12 = 0
+	for member in family:
+		if family[member]['ABCDE'] in ['A', 'B'] and family[member]['child/spousal_support']:
+			line_12 += int(family[member]['child/spousal_support'])
 	
-	# Line_13 = ???
-	# line_14 = line_12 - line_13
-	# line_15 = line_14 + line_11
-	# line_16 = ???
+	line_14 = line_12 - 50 if (line_12 - 50) > 0 else 0
+	line_15 = line_14 + line_11
+	AC_members = calc_members_in_categories(family, ["A", "C"])
+	line_16 = calc_MAP(AC_members, city)
 
-	# result = min[line_11, line_15] if line_15 < line_16 else False
+	result = min([line_11, line_15]) if line_15 < line_16 else False
 
-	# return  result
+	return  result
 
 
 def calc_members_in_categories(family, categories):
@@ -117,11 +107,6 @@ def calc_members_in_categories(family, categories):
 			members += 1
 	return members
 
-
-	if city in REGION_1:
-		return REGION_1_MAP[AC_member]
-	else:
-		return REGION_2_MAP[AC_member]
 
 
 def calc_MAP (fam_members, city):
@@ -152,7 +137,6 @@ def calc_MAP (fam_members, city):
 			return REGION_2_MAP[10]
 
 
-
 def grant_computation (family, city, line_18_a):
 	"""computes total grant for family (Section B of CalWORKS Budget Worksheet)
 
@@ -180,19 +164,26 @@ def grant_computation (family, city, line_18_a):
 	A_members = calc_members_in_categories(family, ['A'])
 	
 	line_19 = calc_MAP(A_members, city)
-	
-
 
 	return min([line_19, line_18_c])
 
 
 def calc_prorated_amt(aid_payment, date):
-	"""calculates prorated payment for the month"""
+	"""calculates prorated payment for the month
+
+	possible further feature, not currently being used
+	"""
 
 	pass
 
 
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+	# for testing
+	family = {1:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
+		  2:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'B', 'child/spousal_support': None},
+		  3:{'income': 100, 'dis_based_unearned': None, 'nonexempt_income': 10, 'ABCDE': 'C', 'child/spousal_support': None},
+		  4: {'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': None , 'child/spousal_support': None}}
+		  
+	import doctest
+	doctest.testmod()

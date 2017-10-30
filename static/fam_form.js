@@ -40,6 +40,32 @@ function addMember(evt){
       
     </div>
   </div>
+  
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="dis_based_unearned">Disability-Based Unearned Income</label>  
+    <div class="col-md-4">
+    <input name="dis_based_unearned" type="number" placeholder="#" class="form-control input-md save-change ${idName}" required="">
+      
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="child/spousal_support">Child/Spousal Support Received</label>  
+    <div class="col-md-4">
+    <input name="child/spousal_support" type="number" placeholder="#" class="form-control input-md save-change ${idName}" required="">
+      
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="nonexempt_income">Non-Exempt Income*</label>  
+    <div class="col-md-4">
+    <input name="nonexempt_income" type="number" placeholder="#" class="form-control input-md save-change ${idName}" required="">
+      
+    </div>
+  </div>
 
   <div class="form-group">
     <label class="col-md-4 control-label" for="mem-sub">Save Member</label>
@@ -108,8 +134,11 @@ function updateModal(){
   for (member in famObj){
     $('#fam-table').append(`<tr>
                            <td>Member ${member}</td>
-                           <td>${famObj[member]['income']}</td>
                            <td>${famObj[member]['ABCDE']}</td>
+                           <td>${famObj[member]['income']}</td>
+                           <td>${famObj[member]['dis_based_unearned']}</td>
+                           <td>${famObj[member]['child/spousal_support']}</td>
+                           <td>${famObj[member]['nonexempt_income']}</td>
                            </tr>`)
   }
 }

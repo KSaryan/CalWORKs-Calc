@@ -35,6 +35,32 @@
   </div>
 </div>
 
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="dis_based_unearned">Disability-Based Unearned Income</label>  
+  <div class="col-md-4">
+  <input name="dis_based_unearned" type="number" placeholder="#" class="form-control input-md save-change 1" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="child/spousal_support">Child/Spousal Support Received</label>  
+  <div class="col-md-4">
+  <input name="child/spousal_support" type="number" placeholder="#" class="form-control input-md save-change 1" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nonexempt_income">Non-Exempt Income*</label>  
+  <div class="col-md-4">
+  <input name="nonexempt_income" type="number" placeholder="#" class="form-control input-md save-change 1" required="">
+    
+  </div>
+</div>
 
 
 <!-- Button (Double) -->
@@ -78,8 +104,11 @@
           <thead>
           <tr>
             <th>Family Member</th>
+             <th>Category</th>
             <th>Income</th>
-            <th>Category</th>
+            <th>Disability-Based Unearned</th>
+            <th>Child/Spousal Support</th>
+            <th>Non-Exempt Income</th>
           </tr>
         </thead>
         <tbody id= 'fam-table'>
@@ -94,6 +123,11 @@
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block footer%}
+<br>
+* Non-Exempt Income is "unearned" income that is not disability-based (i.e. unemployment income or child/spousal support for C,E).  
 {% endblock %}
 
 {% block script %}  
