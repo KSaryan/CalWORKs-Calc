@@ -28,11 +28,13 @@ def show_homepage():
 @app.route('/passed_net_income_test', methods=["POST"])
 def check_net_income():
 	"""Checks if family passes net_income_test and redirects user accordingly"""
-
-	total_income = int(request.form.get('income'))
-	fam_members = int(request.form.get('fammembers'))
-	emp_fam_members = int(request.form.get('empmembers'))
-	city_of_res = request.form.get('city')
+	try: 
+		total_income = int(request.form.get('income'))
+		fam_members = int(request.form.get('fammembers'))
+		emp_fam_members = int(request.form.get('empmembers'))
+		city_of_res = request.form.get('city')
+	except ValueError:
+		return redirect('error')
 
 	if net_income_test(total_income, fam_members, emp_fam_members, city_of_res):
 		return render_template("fam_form.html", city= city_of_res)
