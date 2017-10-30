@@ -14,7 +14,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="ABCDE">Category</label>
   <div class="col-md-4">
-    <select id="ABCDE" name="ABCDE" class="form-control">
+    <select id="ABCDE" name="ABCDE" class="form-control save-change 1">
       <option value="None"> Choose a Category</option>
       <option value="A">A (AU (non MFG and non-penalized))</option>
       <option value="B">B (Penalized AU)</option>
@@ -30,17 +30,19 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="income">Monthly Income</label>  
   <div class="col-md-4">
-  <input name="income" type="number" placeholder="#" class="form-control input-md" required="">
+  <input name="income" type="number" placeholder="#" class="form-control input-md save-change 1" required="">
     
   </div>
 </div>
+
+
 
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="mem-sub"> </label>
   <div class="col-md-8">
     <button name="mem-sub" class="btn btn-success save-mem-btn" data-form = 1 >Save</button>
-    <button name="add" class="btn btn-primary save-and-add-mem-btn" data-form = 1>Save And Add Another Member</button>
+    <button name="add" class="btn btn-primary save-mem-btn save-and-add-mem-btn btn1" data-form = 1>Save And Add Another Member</button>
   </div>
 </div>
 </fieldset>
@@ -50,6 +52,10 @@
 
 <hr>
 
+<!-- Div to display warning message -->
+<div class="warning"></div>
+
+<!-- Calcuate grant button -->
 <div class="row">
   <form action= "/calc_grant" method="POST">
     <input type="hidden" value="" name= "family" id= "family"></input>
@@ -59,6 +65,35 @@
   </form>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="fam-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Confirm Information</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Family Member</th>
+            <th>Income</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody id= 'fam-table'>
+          
+        </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="submitmodal" type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block script %}  

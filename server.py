@@ -45,18 +45,27 @@ def cal_grant():
 	"""Calculates family grant and returns results"""
 
 	family = request.form.get('family')
-	family = ast.literal_eval(family)
+	try: 
+		family = ast.literal_eval(family)
+	except:
+		return redirect("/error")
 	
 	city = request.form.get('city').replace("-", " ")
 	
 
 	result = pass_section_a(family)
-
 	if result:
 		grant = grant_computation(family, city, result)
 		return render_template('grant.html', grant=grant)
 	else:
 		return redirect ('/sorry')
+
+		
+@app.route('/error')
+def show_error_message():
+	"""Diaplays page with error message"""
+
+	return render_template("oops.html")
 
 
 @app.route('/sorry')

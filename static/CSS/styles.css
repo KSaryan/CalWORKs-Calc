@@ -19,3 +19,9 @@ button a{
  body hr{
 	border-top: 1px solid #e5e5e5;
 }
+
+.rmv-btn{
+	background-color: red !important;
+	border-color: red !important;
+	touch-action: manipulation;
+}
