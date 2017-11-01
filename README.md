@@ -1,5 +1,5 @@
 # CALWorks Calculator
-visit at ###
+visit at [https://calworks-calc.herokuapp.com/](https://calworks-calc.herokuapp.com/)
 
 The CALWorks Calculator is designed to help non-profit workers estimate the CALWorks grant a family will receive.
 
@@ -34,7 +34,7 @@ Once again, they can review information before submitting
 ![alt text](screenshots/confirm-Info-2.png "Confirmation on Family Form Page")
 
 They will then get the family's grant amount
-![alt text](screenshots/filter-locations.png "Filter Locations")
+![alt text](screenshots/estimated-grant.png "Estimated Grant")
 
 Or a sorry message
 ![alt text](screenshots/sorry.png "Sorry Message")
@@ -88,4 +88,4 @@ python calworks.py
 - [ ] Finish unit testing in calworks.py
 - [ ] Footnotes
 - [ ] Integration testing
-- [ ] Launch
+- [X] Launch
