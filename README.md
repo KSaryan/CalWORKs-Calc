@@ -1,5 +1,5 @@
 # CALWorks Calculator
-visit at ###
+visit at [https://calworks-calc.herokuapp.com/](https://calworks-calc.herokuapp.com/)
 
 The CALWorks Calculator is designed to help non-profit workers estimate the CALWorks grant a family will receive.
 
