@@ -88,4 +88,4 @@ python calworks.py
 - [ ] Finish unit testing in calworks.py
 - [ ] Footnotes
 - [ ] Integration testing
-- [ ] Launch
+- [X] Launch
