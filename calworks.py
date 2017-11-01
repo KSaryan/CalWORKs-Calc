@@ -46,7 +46,7 @@ def family_calc(family, factor, income_type):
 	30
 
 	>>> family_calc(family, 'ABCDE', 'income')
-	300
+	400
 
 	"""
 	total = 0
@@ -62,19 +62,28 @@ def pass_section_a(family, city):
 	If pass, returns value that will be line_18_a of Section B
 
 	>>> pass_section_a(family, "San Francisco")
-	257
+	112.5
 
 	>>> pass_section_a(family, "Sunland")
-	257
+	112.5
+
+	>>> pass_section_a(family3, "Sunland")
+	False
+
+	>>> pass_section_a(family2, "Sunland")
+	False
+
+	>>> pass_section_a(family2, "San Francisco")
+	False
 
 	"""
+	
 	line_1 = family_calc(family, 'dis_based_unearned', 'dis_based_unearned')
 	line_3 = line_1 - 225
 	line_4 = family_calc(family, 'ABCDE', 'income')
-	line_6 = line_4 - line_3
-	# line_7 = line_6 / 2
-	# line_8 = line_6 - line_7
-	line_8  = line_6 / 2
+	line_5 = line_3 if line_3 < 0 else 0
+	line_6 = line_4 + line_5
+	line_8  = line_6 / 2.0
 	line_9 = line_3 if line_3 > 0 else 0
 	line_10 = family_calc(family, 'nonexempt_income', 'nonexempt_income')
 	line_11 = line_8 + line_9 + line_10
@@ -103,7 +112,7 @@ def calc_members_in_categories(family, categories):
 	>>> calc_members_in_categories(family, ["A"])
 	1
 
-	>>> calc_members_in_categories(family, ["E"])
+	>>> calc_members_in_categories(family, ["D"])
 	0
 
 	"""
@@ -190,7 +199,11 @@ if __name__ == "__main__":
 	family = {1:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
 		  2:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'B', 'child/spousal_support': None},
 		  3:{'income': 100, 'dis_based_unearned': None, 'nonexempt_income': 10, 'ABCDE': 'C', 'child/spousal_support': None},
-		  4: {'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': None , 'child/spousal_support': None}}
-		  
+		  4: {'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'E' , 'child/spousal_support': None}}
+	family2 = {1:{'income': 1000, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}}
+	family3 = {1:{'income': 500, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
+		  2:{'income': 200, 'dis_based_unearned': 50, 'nonexempt_income': None, 'ABCDE': 'B', 'child/spousal_support': None},
+		  3:{'income': 100, 'dis_based_unearned': None, 'nonexempt_income': 10, 'ABCDE': 'C', 'child/spousal_support': None},
+		  4: {'income': 500, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'E' , 'child/spousal_support': None}}	  
 	import doctest
 	doctest.testmod()
