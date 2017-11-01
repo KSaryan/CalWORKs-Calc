@@ -59,6 +59,13 @@ def family_calc(family, factor, income_type):
 def pass_section_a(family, city):
 	""" Returns whether a family passes section A of CalWORKS Budget Worksheet
 
+	If pass, returns value that will be line_18_a of Section B
+
+	>>> pass_section_a(family, "San Francisco")
+	257
+
+	>>> pass_section_a(family, "Sunland")
+	257
 
 	"""
 	line_1 = family_calc(family, 'dis_based_unearned', 'dis_based_unearned')
