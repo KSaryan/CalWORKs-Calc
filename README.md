@@ -34,7 +34,7 @@ Once again, they can review information before submitting
 ![alt text](screenshots/confirm-Info-2.png "Confirmation on Family Form Page")
 
 They will then get the family's grant amount
-![alt text](screenshots/filter-locations.png "Filter Locations")
+![alt text](screenshots/estimated-grant.png "Estimated Grant")
 
 Or a sorry message
 ![alt text](screenshots/sorry.png "Sorry Message")
