@@ -52,7 +52,7 @@ def family_calc(family, factor, income_type):
 	total = 0
 	for member in family:
 		if family[member][factor]:
-			total += int(family[member][income_type])
+			total += float(family[member][income_type])
 	return total
 
 
@@ -91,7 +91,7 @@ def pass_section_a(family, city):
 	line_12 = 0
 	for member in family:
 		if family[member]['ABCDE'] in ['A', 'B'] and family[member]['child/spousal_support']:
-			line_12 += int(family[member]['child/spousal_support'])
+			line_12 += float(family[member]['child/spousal_support'])
 	
 	line_14 = line_12 - 50 if (line_12 - 50) > 0 else 0
 	line_15 = line_14 + line_11

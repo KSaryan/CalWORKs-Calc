@@ -58,6 +58,7 @@ def cal_grant():
 	result = pass_section_a(family, city)
 	if result:
 		grant = grant_computation(family, city, result)
+		grant = '{:20,.2f}'.format(grant)
 		return render_template('grant.html', grant=grant)
 	else:
 		return redirect ('/sorry')

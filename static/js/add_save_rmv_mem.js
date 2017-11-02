@@ -100,7 +100,7 @@ function saveMember(evt){
 
   // adding family member to family object
   famObj[data] = memObj;
-  console.log(famObj);
+
   $('#family').val(JSON.stringify(famObj));
 
   updateModal();
@@ -119,17 +119,22 @@ function removeMember(evt){
 
 }
 
+
 // update info in modal
 function updateModal(){
   $('#fam-table').empty();
   for (member in famObj){
+    let income = makeMoney(famObj[member]['income'])
+    let disBasedUnearned = makeMoney(famObj[member]['dis_based_unearned'])
+    let support =  makeMoney(famObj[member]['child/spousal_support'])
+    let nonexemptIncome = makeMoney(famObj[member]['nonexempt_income'])
     $('#fam-table').append(`<tr>
                            <td>Member ${member}</td>
-                           <td>${famObj[member]['ABCDE']}</td>
-                           <td>${famObj[member]['income']}</td>
-                           <td>${famObj[member]['dis_based_unearned']}</td>
-                           <td>${famObj[member]['child/spousal_support']}</td>
-                           <td>${famObj[member]['nonexempt_income']}</td>
+                           <td>${ famObj[member]['ABCDE'] }</td>
+                           <td>${ income }</td>
+                           <td>${ disBasedUnearned }</td>
+                           <td>${ support }</td>
+                           <td>${ nonexemptIncome }</td>
                            </tr>`)
   }
 }

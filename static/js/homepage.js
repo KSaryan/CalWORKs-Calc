@@ -3,6 +3,9 @@ let data = {};
 
 function passInfo(name){
 	let val = $("#" + name).val();
+	if (name == "income"){
+		val = makeMoney(val);
+	}
 	data[name] = val;
 	$("." + name + "info").html(val);
 }
