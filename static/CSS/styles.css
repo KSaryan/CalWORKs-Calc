@@ -25,3 +25,7 @@ button a{
 	border-color: red !important;
 	touch-action: manipulation;
 }
+
+.panel-body{
+	size: 15px;
+}
