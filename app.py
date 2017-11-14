@@ -17,15 +17,15 @@ import ast
 app = Flask(__name__)
 app.secret_key = "ABC"
 
-COUNTIES = ['Los Angeles', 'Orange', 'San Diego', 'Riverside', 'San Bernardino', 
-'Santa Clara', 'Alameda', 'Sacramento', 'Contra Costa', 'Fresno', 'Ventura', 
-'San Francisco', 'Kern', 'San Mateo', 'San Joaquin', 'Stanislaus', 'Sonoma', 
-'Tulare', 'Solano', 'Monterey', 'Santa Barbara', 'Placer', 'San Luis Obispo', 
-'Santa Cruz', 'Merced', 'Marin', 'Butte', 'Yolo', 'El Dorado', 'Shasta', 'Imperial', 
-'Kings', 'Madera', 'Napa', 'Humboldt', 'Nevada', 'Sutter', 'Mendocino', 'Yuba', 
-'Lake', 'Tehama', 'Tuolumne', 'San Benito', 'Calaveras', 'Siskiyou', 'Amador', 
-'Lassen', 'Del Norte', 'Glenn', 'Plumas', 'Colusa', 'Mariposa', 'Inyo', 'Trinity', 
-'Mono', 'Modoc', 'Sierra', 'Alpine']
+COUNTIES = ['Alameda', 'Alpine', 'Amador', 'Butte', 'Calaveras', 'Colusa', 
+'Contra Costa', 'Del Norte', 'El Dorado', 'Fresno', 'Glenn', 'Humboldt', 
+'Imperial', 'Inyo', 'Kern', 'Kings', 'Lake', 'Lassen', 'Los Angeles', 
+'Madera', 'Marin', 'Mariposa', 'Mendocino', 'Merced', 'Modoc', 'Mono', 
+'Monterey', 'Napa', 'Nevada', 'Orange', 'Placer', 'Plumas', 'Riverside', 
+'Sacramento', 'San Benito', 'San Bernardino', 'San Diego', 'San Francisco', 
+'San Joaquin', 'San Luis Obispo', 'San Mateo', 'Santa Barbara', 'Santa Clara', 
+'Santa Cruz', 'Shasta', 'Sierra', 'Siskiyou', 'Solano', 'Sonoma', 'Stanislaus', 
+'Sutter', 'Tehama', 'Trinity', 'Tulare', 'Tuolumne', 'Ventura', 'Yolo', 'Yuba']
 
 
 @app.route('/')

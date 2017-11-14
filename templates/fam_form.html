@@ -8,7 +8,14 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Family Member 1</legend>
+<legend>
+  <h5> 
+    <p>The family has passed the net-income test. Now we need more information to help calculate their potential grant  amount.</p>
+    <p>Please add all family members, even if they do not earn income. It is fine to enter 0 or nothing for some fields.</p>
+  </h5>
+  <br>
+  Family Member 1
+</legend>
 
 <!-- Select Basic -->
 <div class="form-group">
@@ -16,20 +23,19 @@
   <div class="col-md-4">
     <select id="ABCDE" name="ABCDE" class="form-control save-change 1">
       <option value="None"> Choose a Category</option>
-      <option value="A">A (AU (non MFG and non-penalized))</option>
-      <option value="B">B (Penalized AU)</option>
-      <option value="C">C (non-AU (if income counted or ineligible non citizen)</option>
-      <option value="D">D (MFG)</option>
-      <option value="E">E (SANCTIONED)</option>
+      <option value="A">Assitance Unit (non-penalized)</option>
+      <option value="B">Penalized Assistance Unit</option>
+      <option value="C">non-AU (if income counted or ineligible non citizen)</option>
+      <option value="E">Sanctioned</option>
     </select>
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="income">Monthly Income</label>  
+  <label class="col-md-4 control-label" for="income">Monthly Earned Income (pre-tax)</label>  
   <div class="col-md-4">
-  <input name="income" type="number" placeholder="#" class="form-control input-md save-change 1" required="">
+  <input name="income" type="number" placeholder="0" class="form-control input-md save-change 1" required="">
     
   </div>
 </div>
@@ -38,7 +44,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="dis_based_unearned">Disability-Based Unearned Income</label>  
   <div class="col-md-4">
-  <input name="dis_based_unearned" type="number" placeholder="#" class="form-control input-md save-change 1" required="">
+  <input name="dis_based_unearned" type="number" placeholder="0" class="form-control input-md save-change 1" required="">
     
   </div>
 </div>
@@ -47,7 +53,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="child/spousal_support">Child/Spousal Support Received</label>  
   <div class="col-md-4">
-  <input name="child/spousal_support" type="number" placeholder="#" class="form-control input-md save-change 1" required="">
+  <input name="child/spousal_support" type="number" placeholder="0" class="form-control input-md save-change 1" required="">
     
   </div>
 </div>
@@ -56,7 +62,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="nonexempt_income">Non-Exempt Income*</label>  
   <div class="col-md-4">
-  <input name="nonexempt_income" type="number" placeholder="#" class="form-control input-md save-change 1" required="">
+  <input name="nonexempt_income" type="number" placeholder="0" class="form-control input-md save-change 1" required="">
     
   </div>
 </div>
