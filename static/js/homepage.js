@@ -16,7 +16,7 @@ function confirmInfo(evt){
 
 	passInfo("fammembers");
 	passInfo("empmembers");
-	passInfo("city");
+	passInfo("county");
 	passInfo("income");
 	
 	$('#home-modal').modal('show');

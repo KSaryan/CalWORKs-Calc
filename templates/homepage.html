@@ -36,14 +36,13 @@
 
 <!-- Select Basic -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="city_of_res">City of Residence</label>
+  <label class="col-md-4 control-label" for="county_of_res">County of Residence</label>
   <div class="col-md-4">
-    <select id="city" name="city" class="form-control">
-      <option value="other"> Choose a City </option>
-      {% for city in region_one %}
-         <option value="{{city |replace(" ", "-") }}">{{city}}</option>
+    <select id="county" name="county" class="form-control">
+      <option value="other"> Choose a County </option>
+      {% for county in counties%}
+         <option value="{{county |replace(" ", "-") }}">{{county}}</option>
       {% endfor %}
-      <option value="other">Other</option>
     </select>
   </div>
 </div>
@@ -90,8 +89,8 @@
             <td class = "incomeinfo"></td>
           </tr>
            <tr>
-            <td>City of Residence</td>
-            <td class = "cityinfo"></td>
+            <td>County of Residence</td>
+            <td class = "countyinfo"></td>
           </tr>
         </tbody>
         </table>

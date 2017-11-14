@@ -17,12 +17,22 @@ import ast
 app = Flask(__name__)
 app.secret_key = "ABC"
 
+COUNTIES = ['Los Angeles', 'Orange', 'San Diego', 'Riverside', 'San Bernardino', 
+'Santa Clara', 'Alameda', 'Sacramento', 'Contra Costa', 'Fresno', 'Ventura', 
+'San Francisco', 'Kern', 'San Mateo', 'San Joaquin', 'Stanislaus', 'Sonoma', 
+'Tulare', 'Solano', 'Monterey', 'Santa Barbara', 'Placer', 'San Luis Obispo', 
+'Santa Cruz', 'Merced', 'Marin', 'Butte', 'Yolo', 'El Dorado', 'Shasta', 'Imperial', 
+'Kings', 'Madera', 'Napa', 'Humboldt', 'Nevada', 'Sutter', 'Mendocino', 'Yuba', 
+'Lake', 'Tehama', 'Tuolumne', 'San Benito', 'Calaveras', 'Siskiyou', 'Amador', 
+'Lassen', 'Del Norte', 'Glenn', 'Plumas', 'Colusa', 'Mariposa', 'Inyo', 'Trinity', 
+'Mono', 'Modoc', 'Sierra', 'Alpine']
+
 
 @app.route('/')
 def show_homepage():
 	"""Displays homepage with preliminary form"""
 
-	return render_template('homepage.html', region_one = REGION_1)
+	return render_template('homepage.html', counties = COUNTIES)
 
 
 @app.route('/passed_net_income_test', methods=["POST"])
@@ -32,12 +42,12 @@ def check_net_income():
 		total_income = int(request.form.get('income'))
 		fam_members = int(request.form.get('fammembers'))
 		emp_fam_members = int(request.form.get('empmembers'))
-		city_of_res = request.form.get('city')
+		county_of_res = request.form.get('county')
 	except ValueError:
 		return redirect('error')
 
-	if net_income_test(total_income, fam_members, emp_fam_members, city_of_res):
-		return render_template("fam_form.html", city= city_of_res)
+	if net_income_test(total_income, fam_members, emp_fam_members, county_of_res):
+		return render_template("fam_form.html", county= county_of_res)
 	else:
 		return redirect("/sorry")
 
@@ -52,12 +62,12 @@ def cal_grant():
 	except:
 		return redirect("/error")
 	
-	city = request.form.get('city').replace("-", " ")
+	county = request.form.get('county').replace("-", " ")
 	
 
-	result = pass_section_a(family, city)
+	result = pass_section_a(family, county)
 	if result:
-		grant = grant_computation(family, city, result)
+		grant = grant_computation(family, county, result)
 		grant = '{:20,.2f}'.format(grant)
 		return render_template('grant.html', grant=grant)
 	else:
