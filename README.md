@@ -85,7 +85,7 @@ python calworks.py
 ## <a name="todo"></a> To Do
 
 - [X] Last of backend logic for calculating grant
-- [ ] Finish unit testing in calworks.py
+- [X] Finish unit testing in calworks.py
 - [ ] Footnotes
 - [ ] Integration testing
 - [X] Launch
