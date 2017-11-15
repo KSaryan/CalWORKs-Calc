@@ -26,7 +26,7 @@ function confirmInfo(evt){
 
 	const formNames = ["fammembers", "empmembers", "county", "income"]
 	
-	for (name of formNames){
+	for (let name of formNames){
 		replaceNulls(name);
 		passInfo(name);
 	}
