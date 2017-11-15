@@ -51,7 +51,9 @@ def check_net_income():
 		emp_fam_members = int(request.form.get('empmembers'))
 		county_of_res = request.form.get('county')
 	except ValueError:
-		return redirect('error')
+		return redirect('/error')
+	if not fam_members:
+		return redirect('/error')
 
 	if net_income_test(total_income, fam_members, emp_fam_members, county_of_res):
 		return render_template("fam_form.html", county= county_of_res)

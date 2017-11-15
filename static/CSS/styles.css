@@ -33,3 +33,9 @@ button a{
 .info-text{
 	color: gray;
 }
+
+.col-md-2.tips{
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 10px;
+}

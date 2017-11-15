@@ -9,24 +9,27 @@
 <!-- Form Name -->
 <legend>Basic Family Info
 
-<h6 class="info-text"> This information will be used to calculate whether the family passes the net income test and possibly qualifies for a grant. <br> Please fill out as accuratly as possible.</h6>
+<h5 class="info-text"> This information will be used to calculate whether the family passes the net income test and possibly qualifies for a grant. <br> Please fill out as accuratly as possible.</h5>
 </legend>
 
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="fam_members">Total Family Members*</label>  
+  <label class="col-md-4 control-label" for="fam_members">Total Family Members</label>  
   <div class="col-md-4">
-  <input id="fammembers" name="fammembers" type="number" placeholder="0" class="form-control input-md" required="">
+  <input id="fammembers" name="fammembers" type="number" placeholder="0" class="form-control input-md">
   </div>
+  <div class="col-md-2 tips">
+  <a href="#" data-toggle="tooltip" title="Include care-takes, parents, and minor-children living together.">More Info</a>
+</div>
+  
 </div>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="emp_fam_members">Total Employed Family Members</label>  
   <div class="col-md-4">
-  <input id="empmembers" name="empmembers" type="number" placeholder="0" class="form-control input-md" required="">
-    
+  <input id="empmembers" name="empmembers" type="number" placeholder="0" class="form-control input-md">
   </div>
 </div>
 
@@ -34,7 +37,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="total_income">Total Family Monthly Income (pre-tax)</label>  
   <div class="col-md-4">
-  <input id="income" name="income" type="number" placeholder="0" class="form-control input-md" required="">
+  <input id="income" name="income" type="number" placeholder="0" class="form-control input-md">
   </div>
 </div>
 
@@ -112,11 +115,11 @@
 {% block footer%}
 <br>
 <hr>
-* Include care-takes, parents, and minor-children living together.
 {% endblock %}
 
 {% block script %}
   <script type="text/javascript" src= "/static/js/makemoney.js"></script>
   <script type="text/javascript" src= "/static/js/intake_form.js"></script>
+  <script type="text/javascript" src='/static/js/tooltip.js'></script>
 
 {% endblock %}
