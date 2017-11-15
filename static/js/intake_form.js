@@ -1,3 +1,5 @@
+"use strict";
+
 let data = {};
 
 // placing info in form
@@ -11,7 +13,7 @@ function passInfo(name){
 	$("." + name + "info").html(val);
 }
 
-// raplcing null values
+// replacing null values
 function replaceNulls(name){
 	let val = $("#" + name).val();
 
@@ -33,7 +35,6 @@ function confirmInfo(evt){
 	
 	$('#home-modal').modal('show');
 }
-
 
 // event listeners 
 $('#submithome').on('click', confirmInfo);

@@ -1,3 +1,5 @@
+"use strict";
+
 // create warning to user to remember to save
 function addWarning(evt){
   $(evt.target).css("border", "1px solid red");

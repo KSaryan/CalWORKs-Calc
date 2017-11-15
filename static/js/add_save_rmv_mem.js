@@ -1,3 +1,5 @@
+"use strict";
+
 const altNames = {'A': 'Assitance Unit (non-penalized)' ,
                   'B': 'Penalized Assistance Unit', 
                   'C': 'non-AU (if income counted or ineligible non citizen)', 
