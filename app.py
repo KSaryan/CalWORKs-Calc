@@ -30,9 +30,16 @@ COUNTIES = ['Alameda', 'Alpine', 'Amador', 'Butte', 'Calaveras', 'Colusa',
 
 @app.route('/')
 def show_homepage():
-	"""Displays homepage with preliminary form"""
+	"""Displays homepage"""
 
-	return render_template('homepage.html', counties = COUNTIES)
+	return render_template("homepage.html")
+
+
+@app.route('/intake_form')
+def shot_intake_form():
+	"""DIsplays intial form to be completed"""
+
+	return render_template('intake_form.html', counties = COUNTIES)
 
 
 @app.route('/passed_net_income_test', methods=["POST"])

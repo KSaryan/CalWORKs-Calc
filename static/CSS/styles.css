@@ -29,3 +29,7 @@ button a{
 .panel-body{
 	font-size: 18px;
 }
+
+.info-text{
+	color: gray;
+}
