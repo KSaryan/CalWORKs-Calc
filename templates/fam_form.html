@@ -36,7 +36,11 @@
   <label class="col-md-4 control-label" for="income">Monthly Earned Income (pre-tax)</label>  
   <div class="col-md-4">
   <input name="income" type="number" placeholder="0" class="form-control input-md save-change 1" required="">
-    
+  </div>
+  <div class="col-md-4 tips">
+    <a data-toggle="modal" href="#self-emp-modal">
+      Calculate Self-Employment Income
+    </a>
   </div>
 </div>
 
@@ -98,7 +102,7 @@
   </form>
 </div>
 
-<!-- Modal -->
+<!-- Modal for confirming family info-->
 <div class="modal fade" tabindex="-1" role="dialog" id="fam-modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -130,6 +134,60 @@
       </div>
     </div>
   </div>
+</div>
+<!-- Modal for Calculating Self-Employment Income-->
+<div class="modal fade" id="self-emp-modal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close close-btn" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Self-Employment Income Calculation
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form role="form">
+
+                  <div class="form-group modalForm">
+                    <label for="exampleInputEmail1">Earnings from Self-Employment (pre-tex)</label>
+                    <input type="number" class="form-control" id="earnings-self-emp" placeholder="0"/>
+                  </div>
+
+                  <div class="form-group modalForm">
+                    <label for="exampleInputPassword1">Expenses</label>
+                    <label class="radio-inline"><input type="radio" value="actual" id="expenses" name="percent"/> Actual</label>
+                    <label class="radio-inline"><input type="radio" name="percent"value="forty"/> 40%</label>
+                    <input type="number" class="form-control"
+                          id="exampleInputPassword1" placeholder="0"/>
+                  </div>
+                </form>
+                
+                
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default close-btn"
+                        data-dismiss="modal">
+                            Close
+                </button>
+                <button id="self-emp-btn" type="button" class="btn btn-primary">
+                    Calculate
+                </button>
+                <div id="displayIncome"><div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 
@@ -138,4 +196,5 @@
 <script type="text/javascript" src='/static/js/add_save_rmv_mem.js'></script> 
 <script type="text/javascript" src='/static/js/fam_form.js'></script> 
 <script type="text/javascript" src='/static/js/tooltip.js'></script>
+<script type="text/javascript" src='/static/js/modal.js'></script>
 {% endblock %}
