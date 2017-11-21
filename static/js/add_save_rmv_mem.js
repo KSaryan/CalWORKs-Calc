@@ -93,10 +93,10 @@ function saveMember(evt){
 	let data = $(evt.target).data("form");
   let id = '#' + data
 	let info = $(id).serializeArray();
-
+  debugger;
   let memObj = {};
 
-  for (item of info){
+  for (let item of info){
     // replacing empty fields with 0
     let value = item['value'] == "" ? 0 : item['value']
     // creating object with individual famil member info
@@ -128,7 +128,7 @@ function removeMember(evt){
 // update info in modal
 function updateModal(){
   $('#fam-table').empty();
-  for (member in famObj){
+  for (let member in famObj){
     let category = famObj[member]['ABCDE']
     //replacing letter category with more user friendly text
     let altCategory = altNames[category]
