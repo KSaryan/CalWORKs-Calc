@@ -2,6 +2,7 @@
 
 function calculateSelfEmp(earnings, expenses, percent){
 	// do stuff
+	// need explanation of this part fo form
 	let calculation = 5;
 	return calculation
 }
