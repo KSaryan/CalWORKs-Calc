@@ -44,6 +44,11 @@ function addMember(evt){
     <input name="income" type="number" placeholder="0" class="form-control input-md save-change ${idName}" required="">
       
     </div>
+    <div class="col-md-4 tips">
+      <a data-toggle="modal" href="#self-emp-modal">
+      Calculate Self-Employment Income
+      </a>
+    </div>
   </div>
   
   <div class="form-group">
@@ -84,6 +89,7 @@ function addMember(evt){
   // adding event listeners
   addEventListeners();
   addEventListenersBtns(idName);
+  addModalListeners();
 }
 
 // adding family member info to famObj and putting in hidden form

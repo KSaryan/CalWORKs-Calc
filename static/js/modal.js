@@ -2,6 +2,7 @@
 
 function calculateSelfEmp(earnings, expenses, percent){
 	// do stuff
+	let calculation = 5;
 	return calculation
 }
 
@@ -20,8 +21,11 @@ function calcIncome(){
 	$("#displayIncome").html(`Add 5 to your monthly income`);
 }
 
-
 // event listeners
-$('#self-emp-btn').click(calcIncome);
-// clears div
-$('.close-btn').click(() => $("#displayIncome").empty());
+function addModalListeners(){
+	$('#self-emp-btn').click(calcIncome);
+	// clears div
+	$('.close-btn').click(() => $("#displayIncome").empty());
+}
+
+addModalListeners();
