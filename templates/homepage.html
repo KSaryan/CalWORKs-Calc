@@ -1,113 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
-<form id="homeform" class="form-horizontal" action='/passed_net_income_test' method="POST">
-<fieldset>
-
-<!-- Form Name -->
-<legend>Basic Family Info</legend>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="fam_members">Total Family Members</label>  
-  <div class="col-md-4">
-  <input id="fammembers" name="fammembers" type="number" placeholder="#" class="form-control input-md" required="">
+<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+<div class="panel panel-default">
+  <div class="panel-heading">Welcome</div>
+  <div class="panel-body">
+    <p>Welcome to the CalWorks Calculator. This site was designed to make it easier to calculate the CalWorks grant for a family.</p>
+    <p>Please be advised that this calculator only asseses income eligibility. To learn about other elgibility factors, please visit the follwing link: <a href="https://ca.db101.org/ca/programs/income_support/calworks/program2.htm" target="_blank"> Disability Benefits 101 <a></p>
+  </div>
+  <div class="panel-footer">
+    <button id="submit-sorry" name="submit-sorry" class="btn btn-success">Continue</button>
   </div>
 </div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="emp_fam_members">Total Employed Family Members</label>  
-  <div class="col-md-4">
-  <input id="empmembers" name="empmembers" type="number" placeholder="#" class="form-control input-md" required="">
-    
-  </div>
 </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="total_income">Total Family Monthly Income</label>  
-  <div class="col-md-4">
-  <input id="income" name="income" type="number" placeholder="#" class="form-control input-md" required="">
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="city_of_res">City of Residence</label>
-  <div class="col-md-4">
-    <select id="city" name="city" class="form-control">
-      <option value="other"> Choose a City </option>
-      {% for city in region_one %}
-         <option value="{{city |replace(" ", "-") }}">{{city}}</option>
-      {% endfor %}
-      <option value="other">Other</option>
-    </select>
-  </div>
-</div>
-
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="submit-home"> </label>
-  <div class="col-md-4">
-    <button id="submithome" name="submit-home" class="btn btn-success">Submit</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-
-<!-- Modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="home-modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Confirm Information</h4>
-      </div>
-      <div class="modal-body">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Input Field</th>
-            <th>Family Info</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Family Members</td>
-            <td class = "fammembersinfo"></td>
-          </tr>
-          <tr>
-            <td>Employed Family Members</td>
-            <td class = "empmembersinfo"></td>
-          </tr>
-          <tr>
-            <td>Family Income</td>
-            <td class = "incomeinfo"></td>
-          </tr>
-           <tr>
-            <td>City of Residence</td>
-            <td class = "cityinfo"></td>
-          </tr>
-        </tbody>
-        </table>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button id="submitmodal" type="button" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}
 
+
 {% block script %}
-  <script type="text/javascript" src= "/static/js/makemoney.js"></script>
-  <script type="text/javascript" src= "/static/js/homepage.js"></script>
+<script type="text/javascript">
+
+$('#submit-sorry').click(function(){
+   window.location.href='/intake_form';
+})
+</script>
 
 {% endblock %}

@@ -2,9 +2,10 @@
 
 let data = {};
 
-
+// placing info in form
 function passInfo(name){
 	let val = $("#" + name).val();
+
 	if (name == "income"){
 		val = makeMoney(val);
 	}
@@ -12,18 +13,28 @@ function passInfo(name){
 	$("." + name + "info").html(val);
 }
 
-// putting info into modal
+// replacing null values
+function replaceNulls(name){
+	let val = $("#" + name).val();
+
+	if (val == ""){
+		$("#" + name).val(0)
+	}
+}
+
+// cleaning info and passing to form
 function confirmInfo(evt){
 	evt.preventDefault();
 
-	passInfo("fammembers");
-	passInfo("empmembers");
-	passInfo("county");
-	passInfo("income");
+	const formNames = ["fammembers", "empmembers", "county", "income"]
+	
+	for (let name of formNames){
+		replaceNulls(name);
+		passInfo(name);
+	}
 	
 	$('#home-modal').modal('show');
 }
-
 
 // event listeners 
 $('#submithome').on('click', confirmInfo);

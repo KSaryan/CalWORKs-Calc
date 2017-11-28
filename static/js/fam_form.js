@@ -1,3 +1,5 @@
+"use strict";
+
 // create warning to user to remember to save
 function addWarning(evt){
   $(evt.target).css("border", "1px solid red");
@@ -15,7 +17,7 @@ function clearWarning(evt){
 // confirms if send family member with no category
 function lastConfirm(){
   $('#fam-modal').modal('hide'); 
-  for (key in famObj){
+  for (let key in famObj){
     if (famObj[key]['ABCDE'] == "None"){
       if (confirm("You are submitting this form with missing information. Proceed?")){
         $('#calc-grant').submit();

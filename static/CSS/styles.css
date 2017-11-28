@@ -1,31 +1,81 @@
-.panel-heading {
-	font-size: 20px;
-	font-style: bold;
-}
-/*
-button a{
-	color: white;
-}*/
-
 .hidden{
 	display: none;
 }
 
+/*panel styling*/
+.panel-heading {
+	font-size: 20px;
+	font-style: bold;
+}
+.panel-body{
+	font-size: 18px;
+}
+
+/*navbar*/
 .navbar-default .navbar-header .navbar-brand{
 	color: #5cb85c;
 	font-size: 30px;
 }
 
- body hr{
+/*gray line at bottom of page*/
+body hr{
 	border-top: 1px solid #e5e5e5;
 }
 
+/*remove button from family member page*/
 .rmv-btn{
 	background-color: red !important;
 	border-color: red !important;
 	touch-action: manipulation;
 }
 
-.panel-body{
-	font-size: 18px;
+/*info text at top of page*/
+.info-text{
+	color: gray;
+}
+
+/*tooltips*/
+.col-md-2.tips {
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 10px;
+}
+
+.col-md-4.tips {
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 10px;
+}
+
+@media (max-width: 978px) { 
+	.col-md-4.tips {
+		padding-left: 20px;
+	}
+	.col-md-2.tips {
+		padding-left: 15px;
+	}
+
+}
+
+/*modal styling*/
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%
+}
+
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+
+.modalForm{
+	margin: auto;
+	width: 80%;
+}
+
+#displayIncome{
+	text-align: left;
+	font-size: 1.25em;
 }

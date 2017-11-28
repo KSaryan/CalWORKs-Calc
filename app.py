@@ -17,12 +17,29 @@ import ast
 app = Flask(__name__)
 app.secret_key = "ABC"
 
+COUNTIES = ['Alameda', 'Alpine', 'Amador', 'Butte', 'Calaveras', 'Colusa', 
+'Contra Costa', 'Del Norte', 'El Dorado', 'Fresno', 'Glenn', 'Humboldt', 
+'Imperial', 'Inyo', 'Kern', 'Kings', 'Lake', 'Lassen', 'Los Angeles', 
+'Madera', 'Marin', 'Mariposa', 'Mendocino', 'Merced', 'Modoc', 'Mono', 
+'Monterey', 'Napa', 'Nevada', 'Orange', 'Placer', 'Plumas', 'Riverside', 
+'Sacramento', 'San Benito', 'San Bernardino', 'San Diego', 'San Francisco', 
+'San Joaquin', 'San Luis Obispo', 'San Mateo', 'Santa Barbara', 'Santa Clara', 
+'Santa Cruz', 'Shasta', 'Sierra', 'Siskiyou', 'Solano', 'Sonoma', 'Stanislaus', 
+'Sutter', 'Tehama', 'Trinity', 'Tulare', 'Tuolumne', 'Ventura', 'Yolo', 'Yuba']
+
 
 @app.route('/')
 def show_homepage():
-	"""Displays homepage with preliminary form"""
+	"""Displays homepage"""
 
-	return render_template('homepage.html', region_one = REGION_1)
+	return render_template("homepage.html")
+
+
+@app.route('/intake_form')
+def shot_intake_form():
+	"""DIsplays intial form to be completed"""
+
+	return render_template('intake_form.html', counties = COUNTIES)
 
 
 @app.route('/passed_net_income_test', methods=["POST"])
@@ -32,12 +49,14 @@ def check_net_income():
 		total_income = int(request.form.get('income'))
 		fam_members = int(request.form.get('fammembers'))
 		emp_fam_members = int(request.form.get('empmembers'))
-		city_of_res = request.form.get('city')
+		county_of_res = request.form.get('county')
 	except ValueError:
-		return redirect('error')
+		return redirect('/error')
+	if not fam_members:
+		return redirect('/error')
 
-	if net_income_test(total_income, fam_members, emp_fam_members, city_of_res):
-		return render_template("fam_form.html", city= city_of_res)
+	if net_income_test(total_income, fam_members, emp_fam_members, county_of_res):
+		return render_template("fam_form.html", county= county_of_res)
 	else:
 		return redirect("/sorry")
 
@@ -52,12 +71,12 @@ def cal_grant():
 	except:
 		return redirect("/error")
 	
-	city = request.form.get('city').replace("-", " ")
+	county = request.form.get('county').replace("-", " ")
 	
 
-	result = pass_section_a(family, city)
+	result = pass_section_a(family, county)
 	if result:
-		grant = grant_computation(family, city, result)
+		grant = grant_computation(family, county, result)
 		grant = '{:20,.2f}'.format(grant)
 		return render_template('grant.html', grant=grant)
 	else:

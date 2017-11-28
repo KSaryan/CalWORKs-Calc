@@ -1,3 +1,10 @@
+"use strict";
+
+const altNames = {'A': 'Assitance Unit (non-penalized)' ,
+                  'B': 'Penalized Assistance Unit', 
+                  'C': 'non-AU (if income counted or ineligible non citizen)', 
+                  'E': 'Sanctioned'}
+
 var famObj = {};
 
 // adding another family member form
@@ -23,28 +30,31 @@ function addMember(evt){
     <div class="col-md-4">
       <select name="ABCDE" class="form-control save-change ${idName}">
         <option value="None"> Choose a Category</option>
-        <option value="A">A (AU (non MFG and non-penalized))</option>
-        <option value="B">B (Penalized AU)</option>
-        <option value="C">C (non-AU (if income counted or ineligible non citizen)</option>
-        <option value="D">D (MFG)</option>
-        <option value="E">E (SANCTIONED)</option>
-        <option value="None">None</option>
+        <option value="A">Assitance Unit (non-penalized)</option>
+        <option value="B">Penalized Assitance Unit</option>
+        <option value="C">non-AU (if income counted or ineligible non citizen)</option>
+        <option value="E">Sanctioned</option>
       </select>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="income">Monthly Income</label>  
+    <label class="col-md-4 control-label" for="income">Monthly Earned Income (pre-tax)</label>  
     <div class="col-md-4">
-    <input name="income" type="number" placeholder="#" class="form-control input-md save-change ${idName}" required="">
+    <input name="income" type="number" placeholder="0" class="form-control input-md save-change ${idName}" required="">
       
+    </div>
+    <div class="col-md-4 tips">
+      <a data-toggle="modal" href="#self-emp-modal">
+      Calculate Self-Employment Income
+      </a>
     </div>
   </div>
   
   <div class="form-group">
     <label class="col-md-4 control-label" for="dis_based_unearned">Disability-Based Unearned Income</label>  
     <div class="col-md-4">
-    <input name="dis_based_unearned" type="number" placeholder="#" class="form-control input-md save-change ${idName}" required="">
+    <input name="dis_based_unearned" type="number" placeholder="0" class="form-control input-md save-change ${idName}" required="">
       
     </div>
   </div>
@@ -53,7 +63,7 @@ function addMember(evt){
   <div class="form-group">
     <label class="col-md-4 control-label" for="child/spousal_support">Child/Spousal Support Received</label>  
     <div class="col-md-4">
-    <input name="child/spousal_support" type="number" placeholder="#" class="form-control input-md save-change ${idName}" required="">
+    <input name="child/spousal_support" type="number" placeholder="0" class="form-control input-md save-change ${idName}" required="">
       
     </div>
   </div>
@@ -62,7 +72,7 @@ function addMember(evt){
   <div class="form-group">
     <label class="col-md-4 control-label" for="nonexempt_income">Non-Exempt Income*</label>  
     <div class="col-md-4">
-    <input name="nonexempt_income" type="number" placeholder="#" class="form-control input-md save-change ${idName}" required="">
+    <input name="nonexempt_income" type="number" placeholder="0" class="form-control input-md save-change ${idName}" required="">
       
     </div>
   </div>
@@ -79,6 +89,7 @@ function addMember(evt){
   // adding event listeners
   addEventListeners();
   addEventListenersBtns(idName);
+  addModalListeners();
 }
 
 // adding family member info to famObj and putting in hidden form
@@ -88,10 +99,9 @@ function saveMember(evt){
 	let data = $(evt.target).data("form");
   let id = '#' + data
 	let info = $(id).serializeArray();
-
   let memObj = {};
 
-  for (item of info){
+  for (let item of info){
     // replacing empty fields with 0
     let value = item['value'] == "" ? 0 : item['value']
     // creating object with individual famil member info
@@ -123,14 +133,17 @@ function removeMember(evt){
 // update info in modal
 function updateModal(){
   $('#fam-table').empty();
-  for (member in famObj){
+  for (let member in famObj){
+    let category = famObj[member]['ABCDE']
+    //replacing letter category with more user friendly text
+    let altCategory = altNames[category]
     let income = makeMoney(famObj[member]['income'])
     let disBasedUnearned = makeMoney(famObj[member]['dis_based_unearned'])
     let support =  makeMoney(famObj[member]['child/spousal_support'])
     let nonexemptIncome = makeMoney(famObj[member]['nonexempt_income'])
     $('#fam-table').append(`<tr>
-                           <td>Member ${member}</td>
-                           <td>${ famObj[member]['ABCDE'] }</td>
+                           <td>${ member }</td>
+                           <td>${ altCategory }</td>
                            <td>${ income }</td>
                            <td>${ disBasedUnearned }</td>
                            <td>${ support }</td>

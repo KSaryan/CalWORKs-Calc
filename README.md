@@ -85,7 +85,9 @@ python calworks.py
 ## <a name="todo"></a> To Do
 
 - [X] Last of backend logic for calculating grant
-- [ ] Finish unit testing in calworks.py
-- [ ] Footnotes
+- [X] Finish unit testing in calworks.py
+- [X] ~~Footnotes~~ Tooltips
 - [ ] Integration testing
 - [X] Launch
+- [X] Integrate client feedback
+- [ ] Add way to calculate income from self-employment 

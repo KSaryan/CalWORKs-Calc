@@ -1,3 +1,5 @@
+"use strict";
+
 // formats num into dollar amount
 function makeMoney(num){
   num = Number(num);
