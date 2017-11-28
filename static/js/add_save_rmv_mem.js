@@ -72,18 +72,8 @@ function addMember(num){
      <img src="/static/tooltip-icon.png" alt="info" data-toggle="tooltip" title="Non-Exempt Income is 'unearned' income that is not disability-based (i.e. unemployment income or child/spousal support for C,E).">
     </div>
   </div>
+    `);
 
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="mem-sub"></label>
-    <div class="col-md-8">
-      <button name="mem-sub" class="btn btn-success save-btn save-btn-${idName}" data-form = ${idName}>Save</button>
-    </div>
-  </div>`);
-
-  // adding event listeners
-  addEventListeners();
-  addEventListenersBtns(idName);
-  addModalListeners();
 }
 
 // remove a family member
