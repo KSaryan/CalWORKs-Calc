@@ -43,7 +43,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="ABCDE">Category</label>
   <div class="col-md-4">
-    <select id="ABCDE" name="ABCDE" class="form-control save-change {{ n + 1 }}">
+    <select id="ABCDE" name="ABCDE" class="form-control {{ n + 1 }}">
       <option value="None"> Choose a Category</option>
       <option value="A">Assitance Unit (non-penalized)</option>
       <option value="B">Penalized Assistance Unit</option>
@@ -57,7 +57,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="income">Monthly Earned Income (pre-tax)</label>  
   <div class="col-md-4">
-  <input name="income" type="number" placeholder="0" class="form-control input-md save-change {{ n + 1 }}" required="">
+  <input name="income" type="number" placeholder="0" class="form-control input-md {{ n + 1 }}" required="">
   </div>
   <div class="col-md-4 tips">
     <span data-toggle="tooltip" title="Click to calculate self-employment income">
@@ -70,7 +70,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="dis_based_unearned">Disability-Based Unearned Income</label>  
   <div class="col-md-4">
-  <input name="dis_based_unearned" type="number" placeholder="0" class="form-control input-md save-change {{ n + 1 }}" required="">
+  <input name="dis_based_unearned" type="number" placeholder="0" class="form-control input-md {{ n + 1 }}" required="">
     
   </div>
 </div>
@@ -79,7 +79,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="child/spousal_support">Child/Spousal Support Received</label>  
   <div class="col-md-4">
-  <input name="child/spousal_support" type="number" placeholder="0" class="form-control input-md save-change {{ n + 1 }}" required="">
+  <input name="child/spousal_support" type="number" placeholder="0" class="form-control input-md {{ n + 1 }}" required="">
     
   </div>
 </div>
@@ -88,22 +88,13 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="nonexempt_income">Non-Exempt Income</label>  
   <div class="col-md-4">
-    <input name="nonexempt_income" type="number" placeholder="0"class="form-control input-md save-change {{ n + 1 }}" required="">
+    <input name="nonexempt_income" type="number" placeholder="0"class="form-control input-md {{ n + 1 }}" required="">
   </div>
   <div class="col-md-2 tips">
      <img src="/static/tooltip-icon.png" alt="info" data-toggle="tooltip" title="Non-Exempt Income is 'unearned' income that is not disability-based (i.e. unemployment income or child/spousal support for C,E).">
   </div>
 </div>
 
-
-<!-- Buttons -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="mem-sub"> </label>
-  <div class="col-md-8">
-    <button name="mem-sub" class="btn btn-success save-btn save-btn-{{ n + 1 }}" data-form = {{ n + 1 }} >Save</button>
- 
-  </div>
-</div>
 </fieldset>
 </form>
 </div>

@@ -5,7 +5,7 @@ const altNames = {'A': 'Assitance Unit (non-penalized)' ,
                   'C': 'non-AU (if income counted or ineligible non citizen)', 
                   'E': 'Sanctioned'}
 
-var famObj = {};
+var famObj ={};
 
 // adding another family member form
 function addMember(num){
@@ -98,11 +98,8 @@ function removeMember(num){
 }
 
 // adding family member info to famObj and putting in hidden form
-function saveMember(evt){
-  evt.preventDefault();
-
-	let data = $(evt.target).data("form");
-  let id = '#form-' + data
+function saveMember(num){
+  let id = '#form-' + num
 	let info = $(id).serializeArray();
   let memObj = {};
 
@@ -114,11 +111,9 @@ function saveMember(evt){
   }
 
   // adding family member to family object
-  famObj[data] = memObj;
+  famObj[num] = memObj;
 
   $('#family').val(JSON.stringify(famObj));
-
-  updateModal();
 }
 
 
