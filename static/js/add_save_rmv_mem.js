@@ -99,7 +99,6 @@ function saveMember(evt){
 	let data = $(evt.target).data("form");
   let id = '#' + data
 	let info = $(id).serializeArray();
-  debugger;
   let memObj = {};
 
   for (let item of info){

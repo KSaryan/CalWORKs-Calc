@@ -17,7 +17,7 @@ function clearWarning(evt){
 // confirms if send family member with no category
 function lastConfirm(){
   $('#fam-modal').modal('hide'); 
-  for (key in famObj){
+  for (let key in famObj){
     if (famObj[key]['ABCDE'] == "None"){
       if (confirm("You are submitting this form with missing information. Proceed?")){
         $('#calc-grant').submit();
