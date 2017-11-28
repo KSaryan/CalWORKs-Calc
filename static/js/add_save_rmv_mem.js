@@ -78,7 +78,6 @@ function addMember(num){
 
 // remove a family member
 function removeMember(num){
-  console.log(num);
   $('#form-'+num).parent().remove();
 
   delete famObj[num];
