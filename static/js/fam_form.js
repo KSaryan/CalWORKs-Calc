@@ -40,12 +40,17 @@ function addEventListenersBtns(num){
   $('.add-btn-' + num).on('click', function(evt){addMember(evt)});
 }
 
+function addEventListenersBtnsAll(){
+  $('.save-btn').on('click', function(evt){saveMember(evt); clearWarning(evt);});
+  $('.add-btn').on('click', function(evt){addMember(evt)});
+}
 addEventListeners();
-addEventListenersBtns(1);
+addEventListenersBtnsAll();
 
 // event listeners for final submission
 $('#calc-btn').click(function(evt){evt.preventDefault(); $('#fam-modal').modal('show');});
 $('#submitmodal-fam').click(lastConfirm)
+
 
 
 

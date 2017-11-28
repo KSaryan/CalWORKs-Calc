@@ -32,19 +32,20 @@ body hr{
 /*info text at top of page*/
 .info-text{
 	color: gray;
+	padding-left: 0;
 }
 
 /*tooltips*/
 .col-md-2.tips {
 	padding-left: 0;
 	padding-right: 0;
-	padding-top: 10px;
+	padding-top: 3px;
 }
 
 .col-md-4.tips {
 	padding-left: 0;
 	padding-right: 0;
-	padding-top: 10px;
+	padding-top: 2px;
 }
 
 @media (max-width: 978px) { 
@@ -78,4 +79,13 @@ body hr{
 #displayIncome{
 	text-align: left;
 	font-size: 1.25em;
+}
+
+/*hidden class*/
+.hidden{
+	display: none;
+}
+
+#nums{
+	width: 30% !important;
 }

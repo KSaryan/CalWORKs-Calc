@@ -56,7 +56,7 @@ def check_net_income():
 		return redirect('/error')
 
 	if net_income_test(total_income, fam_members, emp_fam_members, county_of_res):
-		return render_template("fam_form.html", county= county_of_res)
+		return render_template("fam_form.html", county= county_of_res, fam_mems_total=fam_members)
 	else:
 		return redirect("/sorry")
 

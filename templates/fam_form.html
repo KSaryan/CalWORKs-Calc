@@ -1,27 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div id="fam-mems">
-<div class="row">
 
-<form class="form-horizontal" id = 1 >
-<fieldset>
+<h5 class="info-text"> 
+    <p>The family has passed the net-income test. Now we need more information to help calculate their potential grant  amount.</p>
+    <p>All family members should be included, even if they do not earn income. It is fine to leave some fields blank or enter 0.</p>
+</h5>
+
+<br>
+
+<div class="row form-group">
+  <label class="col-md-2 control-label" for="selectbasic">Number of Family Mambers</label>
+  <div class="col-md-1">
+    <select id="fam-mems-select" class="form-control">
+      {% for n in range(1,21) %}
+      {% if n == fam_mems_total %}
+      <option value={{n}} selected="selected">{{n}}</option>
+      {% else %}
+      <option value={{n}}>{{n}}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<input id="prev-select" type="hidden" value = {{fam_mems_total}}> 
+
+
+<div id="fam-mems">
 
 <!-- Form Name -->
+
+{% for n in range(fam_mems_total) %}
+<div class="row">
+<form class="form-horizontal" id = form-{{ n + 1 }} >
+<fieldset>
 <legend>
-  <h5 class="info-text"> 
-    <p>The family has passed the net-income test. Now we need more information to help calculate their potential grant  amount.</p>
-    <p>Please add all family members, even if they do not earn income. It is fine to leave some fields blank or enter 0.</p>
-  </h5>
-  <br>
-  Family Member 1
+  Family Member {{ n + 1 }}
 </legend>
 
 <!-- Select Basic -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="ABCDE">Category</label>
   <div class="col-md-4">
-    <select id="ABCDE" name="ABCDE" class="form-control save-change 1">
+    <select id="ABCDE" name="ABCDE" class="form-control save-change {{ n + 1 }}">
       <option value="None"> Choose a Category</option>
       <option value="A">Assitance Unit (non-penalized)</option>
       <option value="B">Penalized Assistance Unit</option>
@@ -35,12 +57,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="income">Monthly Earned Income (pre-tax)</label>  
   <div class="col-md-4">
-  <input name="income" type="number" placeholder="0" class="form-control input-md save-change 1" required="">
+  <input name="income" type="number" placeholder="0" class="form-control input-md save-change {{ n + 1 }}" required="">
   </div>
   <div class="col-md-4 tips">
-    <a data-toggle="modal" href="#self-emp-modal">
-      Calculate Self-Employment Income
-    </a>
+    <span data-toggle="tooltip" title="Click to calculate self-employment income">
+    <img src="/static/calc-icon.png"data-toggle="modal" href="#self-emp-modal"></img>
+    </span>
   </div>
 </div>
 
@@ -48,7 +70,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="dis_based_unearned">Disability-Based Unearned Income</label>  
   <div class="col-md-4">
-  <input name="dis_based_unearned" type="number" placeholder="0" class="form-control input-md save-change 1" required="">
+  <input name="dis_based_unearned" type="number" placeholder="0" class="form-control input-md save-change {{ n + 1 }}" required="">
     
   </div>
 </div>
@@ -57,7 +79,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="child/spousal_support">Child/Spousal Support Received</label>  
   <div class="col-md-4">
-  <input name="child/spousal_support" type="number" placeholder="0" class="form-control input-md save-change 1" required="">
+  <input name="child/spousal_support" type="number" placeholder="0" class="form-control input-md save-change {{ n + 1 }}" required="">
     
   </div>
 </div>
@@ -66,25 +88,26 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="nonexempt_income">Non-Exempt Income</label>  
   <div class="col-md-4">
-    <input name="nonexempt_income" type="number" placeholder="0"class="form-control input-md save-change 1" required="">
+    <input name="nonexempt_income" type="number" placeholder="0"class="form-control input-md save-change {{ n + 1 }}" required="">
   </div>
   <div class="col-md-2 tips">
-    <a href="#" data-toggle="tooltip" title="Non-Exempt Income is 'unearned' income that is not disability-based (i.e. unemployment income or child/spousal support for C,E).">More Info</a>
+     <img src="/static/tooltip-icon.png" alt="info" data-toggle="tooltip" title="Non-Exempt Income is 'unearned' income that is not disability-based (i.e. unemployment income or child/spousal support for C,E).">
   </div>
 </div>
 
 
-<!-- Button (Double) -->
+<!-- Buttons -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="mem-sub"> </label>
   <div class="col-md-8">
-    <button name="mem-sub" class="btn btn-success save-btn-1" data-form = 1 >Save</button>
-    <button name="add" class="btn btn-primary save-btn-1 add-btn-1 btn1" data-form = 1>Save And Add Another Member</button>
+    <button name="mem-sub" class="btn btn-success save-btn save-btn-{{ n + 1 }}" data-form = {{ n + 1 }} >Save</button>
+ 
   </div>
 </div>
 </fieldset>
 </form>
 </div>
+{% endfor %}
 </div>
 
 <hr>
@@ -135,6 +158,7 @@
     </div>
   </div>
 </div>
+
 <!-- Modal for Calculating Self-Employment Income-->
 <div class="modal fade" id="self-emp-modal" tabindex="-1" role="dialog" 
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -187,8 +211,8 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
+</div>
 
 
 {% block script %}  
@@ -197,4 +221,5 @@
 <script type="text/javascript" src='/static/js/add_save_rmv_mem.js'></script> 
 <script type="text/javascript" src='/static/js/fam_form.js'></script> 
 <script type="text/javascript" src='/static/js/tooltip.js'></script>
+<script type="text/javascript" src='/static/js/fam_mems_dropdown.js'></script>
 {% endblock %}

@@ -8,19 +8,14 @@ const altNames = {'A': 'Assitance Unit (non-penalized)' ,
 var famObj = {};
 
 // adding another family member form
-function addMember(evt){
-  evt.preventDefault();
+function addMember(num){
 
-  // disable button
-  $(evt.target).attr("disabled", "disabled");
-
-  // get number for next family memeber
-  let data = $(evt.target).data("form");
-  let idName = data + 1; 
+  // get number for next family member
+  let idName = num; 
 
   // adding another family member to DOM
-  $('#fam-mems').append(`<div class="row">
-  <form class="form-horizontal" id = ${idName} >
+  $('#fam-mems').append(`<div class="row sorted" data-sort = ${idName}>
+  <form class="form-horizontal" id = form-${idName} >
   <fieldset>
 
   <legend> Family Member ${idName} </legend>
@@ -42,12 +37,11 @@ function addMember(evt){
     <label class="col-md-4 control-label" for="income">Monthly Earned Income (pre-tax)</label>  
     <div class="col-md-4">
     <input name="income" type="number" placeholder="0" class="form-control input-md save-change ${idName}" required="">
-      
     </div>
     <div class="col-md-4 tips">
-      <a data-toggle="modal" href="#self-emp-modal">
-      Calculate Self-Employment Income
-      </a>
+      <span data-toggle="tooltip" title="Click to calculate self-employment income">
+      <img src="/static/calc-icon.png"data-toggle="modal" href="#self-emp-modal"></img>
+      </span>
     </div>
   </div>
   
@@ -70,19 +64,19 @@ function addMember(evt){
 
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="nonexempt_income">Non-Exempt Income*</label>  
+    <label class="col-md-4 control-label" for="nonexempt_income">Non-Exempt Income</label>  
     <div class="col-md-4">
     <input name="nonexempt_income" type="number" placeholder="0" class="form-control input-md save-change ${idName}" required="">
-      
+    </div>
+    <div class="col-md-2 tips">
+     <img src="/static/tooltip-icon.png" alt="info" data-toggle="tooltip" title="Non-Exempt Income is 'unearned' income that is not disability-based (i.e. unemployment income or child/spousal support for C,E).">
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" for="mem-sub">Save Member</label>
+    <label class="col-md-4 control-label" for="mem-sub"></label>
     <div class="col-md-8">
-      <button name="mem-sub" class="btn btn-success save-btn-${idName}" data-form = ${idName}>Save</button>
-      <button name="add" class="btn btn-primary save-btn-${idName} add-btn-${idName} btn${idName}" data-form = ${idName}>Save And Add Another Member</button>
-      <button name="remove" class="btn btn-primary rmv-btn" data-form = ${idName}>Remove Member</button>
+      <button name="mem-sub" class="btn btn-success save-btn save-btn-${idName}" data-form = ${idName}>Save</button>
     </div>
   </div>`);
 
@@ -92,12 +86,23 @@ function addMember(evt){
   addModalListeners();
 }
 
+// remove a family member
+function removeMember(num){
+  console.log(num);
+  $('#form-'+num).parent().remove();
+
+  delete famObj[num];
+
+  updateModal();
+
+}
+
 // adding family member info to famObj and putting in hidden form
 function saveMember(evt){
   evt.preventDefault();
 
 	let data = $(evt.target).data("form");
-  let id = '#' + data
+  let id = '#form-' + data
 	let info = $(id).serializeArray();
   let memObj = {};
 
@@ -114,19 +119,6 @@ function saveMember(evt){
   $('#family').val(JSON.stringify(famObj));
 
   updateModal();
-}
-
-// remove a family member
-function removeMember(evt){
-  let data = $(evt.target).data("form");
-  $("#"+data).parent().remove();
-  let prevMember = data - 1;
-  $('.btn' + prevMember).attr("disabled", false);
-
-  delete famObj[data];
-
-  updateModal();
-
 }
 
 
