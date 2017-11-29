@@ -76,6 +76,7 @@ function addMember(num){
 
 }
 
+
 // remove a family member
 function removeMember(num){
   $('#form-'+num).parent().remove();
