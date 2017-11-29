@@ -181,16 +181,15 @@
                 <form role="form">
 
                   <div class="form-group modalForm">
-                    <label for="exampleInputEmail1">Earnings from Self-Employment (pre-tex)</label>
+                    <label for="exampleInputEmail1">Earnings from Self-Employment (pre-tax)</label>
                     <input type="number" class="form-control" id="earnings-self-emp" placeholder="0"/>
                   </div>
 
-                  <div class="form-group modalForm">
+                  <div class="form-group modalForm" id="expenses-div">
                     <label for="exampleInputPassword1">Expenses</label>
-                    <label class="radio-inline"><input type="radio" value="actual" id="expenses" name="percent"/> Actual</label>
-                    <label class="radio-inline"><input type="radio" name="percent"value="forty"/> 40%</label>
-                    <input type="number" class="form-control"
-                          id="exampleInputPassword1" placeholder="0"/>
+                    <label class="radio-inline"><input type="radio" value="actual" class="modal-radio"name="percent"/> Actual</label>
+                    <label class="radio-inline"><input type="radio" name="percent"class="modal-radio"value="forty"/> 40%</label>
+                    <input type="number" class="form-control"id="expense-input" placeholder="0"/>
                   </div>
                 </form>
                 
