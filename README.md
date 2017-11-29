@@ -16,22 +16,19 @@ The CALWorks Calculator is designed to help non-profit workers estimate the CALW
 
 ## <a name="features"></a>Features
 User fills out inital information on a family
-![alt text](screenshots/homepage.png "Homepage")
+![alt text](screenshots/intake-form.png "Intake Form")
 
 They need to confirm information
-![alt text](screenshots/confirm-info-1.png "Confirmation on Homepage")
+![alt text](screenshots/confirm-intake-form.png "Confirmation on Intake Form")
 
-If the family passes the net income test, they will fill out more information on the family
-![alt text](screenshots/1familymember.png "Family Info Form")
+If the family passes the gross income test, they will fill out more information on the family
+![alt text](screenshots/fam-form.png "Family Form")
 
-They can add and remove members
-![alt text](screenshots/2familymembers.png "2 Family Members")
-
-And will be reminded to save before submitting
-![alt text](screenshots/unsaved-info.png "Warning Message")
+They can adjust how many members are in their family
+![alt text](screenshots/changing-fam-count.png "Family Form Dropdown")
 
 Once again, they can review information before submitting
-![alt text](screenshots/confirm-Info-2.png "Confirmation on Family Form Page")
+![alt text](screenshots/confirm-fam-form.png "Confirmation on Family Form Page")
 
 They will then get the family's grant amount
 ![alt text](screenshots/estimated-grant.png "Estimated Grant")
@@ -90,4 +87,4 @@ python calworks.py
 - [ ] Integration testing
 - [X] Launch
 - [X] Integrate client feedback
-- [ ] Add way to calculate income from self-employment 
+- [X] Add way to calculate income from self-employment 
