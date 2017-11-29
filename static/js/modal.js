@@ -11,16 +11,23 @@ function calcIncome(){
 	}
 
 	let calculation = earnings - expenses
-
+	debugger;
+	let msg;
 	// displays error message if something wrong
 	if (isNaN(calculation)){
-		let errorMsg = 'You have made an error in filling out this form please try again.'
+		msg = 'You have made an error in filling out this form. Please try again.'
 		$("#displayIncome").html(errorMsg);
-	}else{
+	}else if(calculation < 0){
+		msg = 'Your expenses are greater than your earnings'
+	}
+	else{
 	// displays calculation
-	let dlrAmnt = makeMoney(calculation)
-	$("#displayIncome").html(`Add ${dlrAmnt} to your monthly income`);
-}
+		let dlrAmnt = makeMoney(calculation)
+		msg = `Add ${dlrAmnt} to your monthly income`
+	
+	}
+
+	$("#displayIncome").html(msg);	
 }
 
 function getExpenses(evt){

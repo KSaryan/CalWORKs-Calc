@@ -111,8 +111,9 @@
 
 <hr>
 
-<!-- Div to display warning message -->
-<div class="warning"></div>
+{% if not county %}
+  show counties here
+{% endif %}
 
 <!-- Calcuate grant button -->
 <div class="row">

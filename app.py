@@ -61,6 +61,13 @@ def check_net_income():
 		return redirect("/sorry")
 
 
+@app.route('/passed_net_income_test', methods=["GET"])
+def show_default_form():
+	"""Displays generic family form"""
+
+	return render_template("fam_form.html", county= None, fam_mems_total=1, counties = COUNTIES)
+
+
 @app.route('/calc_grant', methods=["POST"])
 def cal_grant():
 	"""Calculates family grant and returns results"""
