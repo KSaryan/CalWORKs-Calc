@@ -3,28 +3,23 @@
 
 function calcIncome(){
 	// get info from form
-	let earnings = Number($("#earnings-self-emp").val());
-	let expenses = Number($("#expense-input").val());
-	// sets expenses to ) if they didn't type anything in
-	if (isNaN(expenses)){
-		expenses = 0;
-	}
-
-	let calculation = earnings - expenses
 	debugger;
+	let earnings = Number($("#earnings-self-emp").val());
+	let expenses = $("#expense-input").val();
+
 	let msg;
 	// displays error message if something wrong
-	if (isNaN(calculation)){
+	if (expenses == ""){
 		msg = 'You have made an error in filling out this form. Please try again.'
-		$("#displayIncome").html(errorMsg);
-	}else if(calculation < 0){
-		msg = 'Your expenses are greater than your earnings'
-	}
-	else{
+	}else{
 	// displays calculation
+		let calculation = earnings - Number(expenses)
+		if (calculation < 0){
+			msg = 'Your expenses are greater than your earnings'
+		}else{
 		let dlrAmnt = makeMoney(calculation)
 		msg = `Add ${dlrAmnt} to your monthly income`
-	
+		}
 	}
 
 	$("#displayIncome").html(msg);	
