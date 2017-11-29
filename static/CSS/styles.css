@@ -150,3 +150,8 @@ div.col-md-2.county-backup{
 	padding-left: 0;
 	margin-bottom: 15px;
 }
+
+#issue-div{
+	text-align: right;
+	padding-top: 4px;
+}
