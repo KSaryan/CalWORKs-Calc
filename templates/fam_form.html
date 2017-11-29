@@ -112,7 +112,19 @@
 <hr>
 
 {% if not county %}
-  show counties here
+<div class ="row">
+  <div class="form-group">
+  <label class="col-md-2 control-label county-backup" for="county_backup">County of Residence</label>
+  <div class="col-md-2 county-backup">
+    <select id="county-backup" name="county" class="form-control county-backup">
+      <option value="other"> Choose a County </option>
+      {% for county in counties%}
+         <option value="{{county |replace(" ", "-") }}">{{county}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  </div>
+</div>
 {% endif %}
 
 <!-- Calcuate grant button -->

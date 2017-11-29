@@ -3,6 +3,10 @@
 // saves all family member information
 function saveInfo(evt){
   evt.preventDefault();
+  if ($('#county').val() == "None"){
+    alert("Please choose a county of residence before continuing.");
+    return;
+  }
   // empty famObj
   famObj = {};
   // getting current family count from hidden input
@@ -32,11 +36,15 @@ function lastConfirm(){
     }
 }
 
+function inputCounty (){
+  let county = $('#county-backup').val();
+  $('#county').val(county);
+}
 
 // event listeners for final submission
 $('#calc-btn').click(saveInfo);
 $('#submitmodal-fam').click(lastConfirm)
-
+$('#county-backup').change(inputCounty);
 
 
 

@@ -137,3 +137,16 @@ body hr{
     line-height: inherit;
     color: #333;
 }
+
+/*county dropdown on fam-form*/
+.col-md-2.control-label.county-backup{
+	padding-right: 0;
+	padding-left: 0;
+	padding-bottom: 15px;
+}
+
+div.col-md-2.county-backup{
+	padding-right: 0;
+	padding-left: 0;
+	margin-bottom: 15px;
+}
