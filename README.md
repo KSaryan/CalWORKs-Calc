@@ -84,7 +84,8 @@ python calworks.py
 - [X] Last of backend logic for calculating grant
 - [X] Finish unit testing in calworks.py
 - [X] ~~Footnotes~~ Tooltips
-- [ ] Integration testing
+- [X] Integration testing
 - [X] Launch
 - [X] Integrate client feedback
 - [X] Add way to calculate income from self-employment 
+- [ ] Jasmine testing
