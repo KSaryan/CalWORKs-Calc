@@ -42,9 +42,9 @@ def shot_intake_form():
 	return render_template('intake_form.html', counties = COUNTIES)
 
 
-@app.route('/passed_net_income_test', methods=["POST"])
-def check_net_income():
-	"""Checks if family passes net_income_test and redirects user accordingly"""
+@app.route('/passed_gross_income_test', methods=["POST"])
+def check_gross_income():
+	"""Checks if family passes gross_income_test and redirects user accordingly"""
 	try: 
 		total_income = int(request.form.get('income'))
 		fam_members = int(request.form.get('fammembers'))
@@ -52,16 +52,17 @@ def check_net_income():
 		county_of_res = request.form.get('county')
 	except ValueError:
 		return redirect('/error')
-	if not fam_members:
+	
+	if not fam_members or county_of_res == 'other':
 		return redirect('/error')
 
-	if net_income_test(total_income, fam_members, emp_fam_members, county_of_res):
+	if gross_income_test(total_income, fam_members, emp_fam_members, county_of_res):
 		return render_template("fam_form.html", county= county_of_res, fam_mems_total=fam_members)
 	else:
 		return redirect("/sorry")
 
 
-@app.route('/passed_net_income_test', methods=["GET"])
+@app.route('/passed_gross_income_test', methods=["GET"])
 def show_default_form():
 	"""Displays generic family form"""
 

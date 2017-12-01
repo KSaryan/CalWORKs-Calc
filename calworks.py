@@ -7,21 +7,40 @@ REGION_1_MAP = {1: 355, 2: 577, 3: 714, 4: 852, 5: 968, 6: 1087, 7: 1195, 8: 130
 REGION_2_MBSAC = {1: 626, 2: 1029, 3: 1247, 4: 1514 , 5: 1730, 6: 1944, 7: 2131, 8: 2327,  9: 2514, 10: 2738}
 REGION_2_MAP = {1: 336, 2: 549, 3: 680, 4: 810 , 5: 922, 6: 1035, 7: 1136, 8: 1239,  9: 1340, 10: 1438}
 
-def net_income_test(total_income, fam_members, emp_fam_members, county_of_res):
-	""" Returns whether a family passes net income test 
 
-	>>> net_income_test(1000, 4, 2, "San Francisco")
+# for testing
+family = {1:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
+	  	  2:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'B', 'child/spousal_support': None},
+	  	  3:{'income': 100, 'dis_based_unearned': None, 'nonexempt_income': 10, 'ABCDE': 'C', 'child/spousal_support': None},
+	  	  4: {'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'E' , 'child/spousal_support': None}}
+family2 = {1:{'income': 1000, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}}
+family3 = {1:{'income': 500, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
+	  	   2:{'income': 200, 'dis_based_unearned': 50, 'nonexempt_income': None, 'ABCDE': 'B', 'child/spousal_support': None},
+	  	   3:{'income': 100, 'dis_based_unearned': None, 'nonexempt_income': 10, 'ABCDE': 'C', 'child/spousal_support': None},
+	  	   4: {'income': 500, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'E' , 'child/spousal_support': None}}	  
+family4 = {1:{'income': 1000, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10},
+		   2: {'income': 0, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'C', 'child/spousal_support': 0}}
+
+
+def gross_income_test(total_income, fam_members, emp_fam_members, county_of_res):
+	""" Returns whether a family passes gross income test 
+
+	>>> gross_income_test(1000, 4, 2, "San Francisco")
 	True
-	>>> net_income_test(2000, 4, 2, "San Francisco")
+	>>> gross_income_test(2000, 4, 2, "San Francisco")
 	False
-	>>> net_income_test(1500, 3, 1, "San Francisco")
+	>>> gross_income_test(1500, 3, 1, "San Francisco")
 	False
-	>>> net_income_test(1000, 4, 2, "Long Beach")
+	>>> gross_income_test(1000, 4, 2, "Long Beach")
 	True
-	>>> net_income_test(1500, 3, 2, "Long Beach")
+	>>> gross_income_test(1500, 3, 2, "Long Beach")
 	False
-	>>> net_income_test(1000, 1, 1, "Long Beach")
+	>>> gross_income_test(1000, 1, 1, "Long Beach")
 	False
+	>>> gross_income_test(1000, 11, 2, "San Francisco")
+	True
+	>>> gross_income_test(1000, 11, 2, "Long Beach")
+	True
 
 	"""
 
@@ -142,6 +161,12 @@ def calc_MAP (fam_members, county):
 	>>> calc_MAP (1, "Long Beach")
 	336
 
+	>>> calc_MAP (11, "Alameda")
+	1511
+
+	>>> calc_MAP (12, "Long Beach")
+	1438
+
 	"""
 
 	if county in REGION_1:
@@ -190,28 +215,17 @@ def grant_computation (family, county, line_18_a):
 	return min([line_19, line_18_c])
 
 
-def calc_prorated_amt(aid_payment, date):
-	"""calculates prorated payment for the month
+# def calc_prorated_amt(aid_payment, date):
+# 	"""calculates prorated payment for the month
 
-	possible further feature, not currently being used
-	"""
+# 	possible further feature, not currently being used
+# 	"""
 
-	pass
+# 	pass
 
 
 
 if __name__ == "__main__":
-	# for testing
-	family = {1:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
-		  2:{'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'B', 'child/spousal_support': None},
-		  3:{'income': 100, 'dis_based_unearned': None, 'nonexempt_income': 10, 'ABCDE': 'C', 'child/spousal_support': None},
-		  4: {'income': 100, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'E' , 'child/spousal_support': None}}
-	family2 = {1:{'income': 1000, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}}
-	family3 = {1:{'income': 500, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10}, 
-		  2:{'income': 200, 'dis_based_unearned': 50, 'nonexempt_income': None, 'ABCDE': 'B', 'child/spousal_support': None},
-		  3:{'income': 100, 'dis_based_unearned': None, 'nonexempt_income': 10, 'ABCDE': 'C', 'child/spousal_support': None},
-		  4: {'income': 500, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'E' , 'child/spousal_support': None}}	  
-	family4 = {1:{'income': 1000, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'A', 'child/spousal_support': 10},
-					2: {'income': 0, 'dis_based_unearned': 10, 'nonexempt_income': None, 'ABCDE': 'C', 'child/spousal_support': 0}}
+
 	import doctest
 	doctest.testmod()
