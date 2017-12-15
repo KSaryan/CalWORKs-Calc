@@ -40,7 +40,7 @@ function addMember(num){
     </div>
     <div class="col-md-4 tips">
       <span data-toggle="tooltip" title="Click to calculate self-employment income">
-      <img src="/static/calc-icon.png"data-toggle="modal" href="#self-emp-modal"></img>
+      <img src="/static/calc-icon.png" data-toggle="modal" href="#self-emp-modal"></img>
       </span>
     </div>
   </div>
@@ -74,6 +74,7 @@ function addMember(num){
   </div>
     `);
 
+  tooltip_listener();
 }
 
 

@@ -1,5 +1,7 @@
 "use strict";
 
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-    });
+function tooltip_listener(){
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip();   
+	    });
+}
