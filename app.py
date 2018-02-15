@@ -1,7 +1,7 @@
 from jinja2 import StrictUndefined
 from flask import jsonify
 from flask import (Flask, render_template, redirect, request, flash,
-                   session)
+                   session, g)
 
 import json
 
@@ -26,6 +26,14 @@ COUNTIES = ['Alameda', 'Alpine', 'Amador', 'Butte', 'Calaveras', 'Colusa',
 'San Joaquin', 'San Luis Obispo', 'San Mateo', 'Santa Barbara', 'Santa Clara', 
 'Santa Cruz', 'Shasta', 'Sierra', 'Siskiyou', 'Solano', 'Sonoma', 'Stanislaus', 
 'Sutter', 'Tehama', 'Trinity', 'Tulare', 'Tuolumne', 'Ventura', 'Yolo', 'Yuba']
+
+
+JS_TESTING_MODE = False
+
+
+@app.before_request
+def add_tests():
+    g.jasmine_tests = JS_TESTING_MODE
 
 
 @app.route('/')
@@ -105,7 +113,14 @@ def show_sorry_message():
 	return render_template("sorry.html")
 
 
+
 if __name__ == "__main__":
+
+	import sys
+	if sys.argv[-1] == "jstest":
+		JS_TESTING_MODE = True
+        
+	app.run(debug=True)
 	app.debug = True
 	app.run(port=5000, host='0.0.0.0')
 

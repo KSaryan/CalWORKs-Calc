@@ -22,18 +22,23 @@ function saveInfo(evt){
   $('#fam-modal').modal('show');
 }
 
+// checks for fam member with missing category
+function checkMissingCat(famObj){
+  let missingCat = false;
+  for (let key in famObj){
+    if(famObj[key]["ABCDE"]=="None"){
+      missingCat = true;
+    }
+  }
+  return missingCat;
+}
 
 // confirms if send family member with no category
 function lastConfirm(){
   $('#fam-modal').modal('hide'); 
 
   // checking if missing category for any family member
-  let missingCat;
-  for (let key in famObj){
-    if(famObj[key]["ABCDE"]=="None"){
-      missingCat = true;
-    }
-  }
+  let missingCat = checkMissingCat(famObj);
 
   if (missingCat){
       if (confirm("You are submitting this form with missing information. Proceed?")){

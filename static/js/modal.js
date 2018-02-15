@@ -1,11 +1,7 @@
 "use strict";
 
-
-function calcIncome(){
-	// get info from form
-	debugger;
-	let earnings = Number($("#earnings-self-emp").val());
-	let expenses = $("#expense-input").val();
+// caluclates income form self-employment
+function calculateIncome(earnings, expenses){
 
 	let msg;
 	// displays error message if something wrong
@@ -13,7 +9,7 @@ function calcIncome(){
 		msg = 'You have made an error in filling out this form. Please try again.'
 	}else{
 	// displays calculation
-		let calculation = earnings - Number(expenses)
+		let calculation = Number(earnings) - Number(expenses)
 		if (calculation < 0){
 			msg = 'Your expenses are greater than your earnings'
 		}else{
@@ -21,26 +17,46 @@ function calcIncome(){
 		msg = `Add ${dlrAmnt} to your monthly income`
 		}
 	}
+	return msg;
+}
+
+// displays income ftom self-empployment
+function calcIncome(){
+	
+	let earnings = $("#earnings-self-emp").val();
+	let expenses = $("#expense-input").val();
+
+	let msg = calculateIncome(earnings, expenses)
+	
 
 	$("#displayIncome").html(msg);	
 }
 
-function getExpenses(evt){
-	let choice = this.value;
+// calculates expenses for self-emp modal
+function calcExpenses(choice, earnings){
 
+	let expenses;
 	if(choice == "forty"){
-		let earnings = $("#earnings-self-emp").val()
-		let expenses = earnings * .4
-
-		$("#expense-input").removeClass("hidden");
-		$("#expense-input").val(expenses);
+		expenses = earnings * .4
 
 	}else{
-		$("#expense-input").removeClass("hidden");
-		$("#expense-input").val("");
+		expenses = ""
 	} 
+	return expenses;
 }
 
+// gets and displays expenses
+function getExpenses(evt){
+	let choice = this.value;
+	let earnings = Number($("#earnings-self-emp").val());
+
+	let expenses = calcExpenses(choice, earnings);
+	
+	$("#expense-input").removeClass("hidden");
+	$("#expense-input").val(expenses);
+}
+
+// resets self-emp income modal to original state
 function resetModal(){
 	// clears div
 	$("#displayIncome").empty()
