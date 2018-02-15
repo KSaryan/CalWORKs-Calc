@@ -75,10 +75,7 @@ You can now navigate to 'localhost:5000/' to access CALWorks Caculator.
 ## <a name="testing"></a> Testing
 To run unit tests and Selenium tests:
 
-1.
-```
-python app.py
-```
+1.`python app.py`
 
 2. in a separete terminal window:
 ```
