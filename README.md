@@ -65,7 +65,7 @@ pip install -r requirements.txt
 Run the app:
 
 ```
-python server.py
+python app.py
 ```
 
 You can now navigate to 'localhost:5000/' to access CALWorks Caculator.
