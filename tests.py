@@ -4,6 +4,7 @@ from calworks import *
 import doctest
 import calworks
 import app as server
+from selenium import webdriver
 
 
 def load_tests(loader, tests, ignore):
@@ -165,6 +166,109 @@ class MyAppUnitTestRoutes(TestCase):
         expected_text = "This family does not qualify for a CalWORKS aid payment because their income is too high."
         self.assertIn(expected_text, result.data)
    
+class SeleniumTests(TestCase):
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_intake_form(self):
+        """tests in infro from intake form shows up in modal"""
+
+        self.browser.get('http://localhost:5000/intake_form')
+
+        fam = self.browser.find_element_by_id('fammembers')
+        fam.send_keys("4")
+
+        emp = self.browser.find_element_by_id('empmembers')
+        emp.send_keys("2")
+
+        income = self.browser.find_element_by_id('income')
+        income.send_keys("1000")
+
+        self.browser.find_element_by_xpath("//select[@name='county']/option[text()='San Francisco']").click()
+
+
+        btn = self.browser.find_element_by_id('submithome')
+        btn.click()
+
+        result = self.browser.find_element_by_class_name('fammembersinfo')
+        self.assertEqual(result.text, "4")
+
+        result = self.browser.find_element_by_class_name('empmembersinfo')
+        self.assertEqual(result.text, "2")
+        
+        result = self.browser.find_element_by_class_name('incomeinfo')
+        self.assertEqual(result.text, "$1,000.00")
+
+        result = self.browser.find_element_by_class_name('countyinfo')
+        self.assertEqual(result.text, "San-Francisco")
+
+    def test_intake_form_county_no_dash(self):
+        """tests if county showing up correctly in modal"""
+
+        self.browser.get('http://localhost:5000/intake_form')
+
+        self.browser.find_element_by_xpath("//select[@name='county']/option[text()='San Francisco']").click()
+
+
+        btn = self.browser.find_element_by_id('submithome')
+        btn.click()
+
+        result = self.browser.find_element_by_class_name('countyinfo')
+        self.assertEqual(result.text, "San-Francisco")
+
+    def test_intake_form_empty_fields(self):
+        """tests what happens if leave forms blank"""
+
+        self.browser.get('http://localhost:5000/intake_form')
+
+        fam = self.browser.find_element_by_id('fammembers')
+        fam.send_keys("")
+
+        emp = self.browser.find_element_by_id('empmembers')
+        emp.send_keys("")
+
+        income = self.browser.find_element_by_id('income')
+        income.send_keys("")
+
+        btn = self.browser.find_element_by_id('submithome')
+        btn.click()
+
+        result = self.browser.find_element_by_class_name('fammembersinfo')
+        self.assertEqual(result.text, "0")
+
+        result = self.browser.find_element_by_class_name('empmembersinfo')
+        self.assertEqual(result.text, "0")
+        
+        result = self.browser.find_element_by_class_name('incomeinfo')
+        self.assertEqual(result.text, "$0.00")
+
+        result = self.browser.find_element_by_class_name('countyinfo')
+        self.assertEqual(result.text, "other")
+
+    def test_fam_form_number_of_fam_dropdown(self):
+        """tests if fam-mems-select dropdown properly changes the number of forms displayed"""
+
+        self.browser.get('http://localhost:5000/passed_gross_income_test')
+
+        self.browser.find_element_by_xpath("//select[@name='fam-mems-select']/option[text()='4']").click()
+
+        result = self.browser.find_element_by_id("fam-mems")
+        self.assertIn("Family Member 4", result.text)
+
+        self.browser.get('http://localhost:5000/passed_gross_income_test')
+
+        self.browser.find_element_by_xpath("//select[@name='fam-mems-select']/option[text()='2']").click()
+
+        result = self.browser.find_element_by_id("fam-mems")
+        self.assertIn("Family Member 2", result.text)
+
+        result = self.browser.find_element_by_id("fam-mems")
+        self.assertNotIn("Family Member 4", result.text)
+
 
 
 if __name__ == "__main__":

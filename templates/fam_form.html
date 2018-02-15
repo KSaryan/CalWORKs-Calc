@@ -20,7 +20,7 @@
 <div class="row form-group">
   <label class="col-md-2 control-label" for="selectbasic">Number of Family Mambers</label>
   <div class="col-md-1">
-    <select id="fam-mems-select" class="form-control">
+    <select id="fam-mems-select" name="fam-mems-select" class="form-control">
       {% for n in range(1,21) %}
       {% if n == fam_mems_total %}
       <option value={{n}} selected="selected">{{n}}</option>

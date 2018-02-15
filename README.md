@@ -73,11 +73,25 @@ You can now navigate to 'localhost:5000/' to access CALWorks Caculator.
 
 
 ## <a name="testing"></a> Testing
-To run tests:
+To run unit tests and Selenium tests:
+
+1.
+```
+python app.py
+```
+
+2. in a separete terminal window:
+```
+python tests.py
+```
+
+To run  Jasmine tests:
 
 ```
-python calworks.py
+python app.py jstest
 ```
+
+
 
 ## <a name="todo"></a> To Do
 
@@ -89,4 +103,4 @@ python calworks.py
 - [X] Integrate client feedback
 - [X] Add way to calculate income from self-employment 
 - [X] Jasmine testing
-- [ ] Selenium testing
+- [ ] More Selenium testing
