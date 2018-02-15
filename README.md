@@ -77,10 +77,7 @@ To run unit tests and Selenium tests:
 
 1. `python app.py`
 
-2. in a separete terminal window:
-```
-python tests.py
-```
+2. in a separete terminal window: `python tests.py`
 
 To run  Jasmine tests:
 
