@@ -269,6 +269,17 @@ class SeleniumTests(TestCase):
         result = self.browser.find_element_by_id("fam-mems")
         self.assertNotIn("Family Member 4", result.text)
 
+    def test_skip_intake_form(self):
+        """tests if clicking skip link allows skip intake form"""
+
+        self.browser.get('http://localhost:5000/intake_form')
+
+        link = self.browser.find_element_by_id('skip')
+        link.click()
+
+        result = self.browser.find_element_by_class_name('fake-legend')
+        self.assertIn('Individual Family Member Info', result.text)
+
 
 
 if __name__ == "__main__":
