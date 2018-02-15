@@ -88,4 +88,5 @@ python calworks.py
 - [X] Launch
 - [X] Integrate client feedback
 - [X] Add way to calculate income from self-employment 
-- [ ] Jasmine testing
+- [X] Jasmine testing
+- [ ] Selenium testing
