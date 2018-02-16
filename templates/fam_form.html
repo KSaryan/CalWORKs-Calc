@@ -69,7 +69,7 @@
   </div>
   <div class="col-md-4 tips">
     <span data-toggle="tooltip" title="Click to calculate self-employment income">
-    <img src="/static/calc-icon.png"data-toggle="modal" href="#self-emp-modal"></img>
+    <img class="selfemptip" src="/static/calc-icon.png"data-toggle="modal" href="#self-emp-modal"></img>
     </span>
   </div>
 </div>
@@ -200,9 +200,9 @@
 
                   <div class="form-group modalForm" id="expenses-div">
                     <label for="exampleInputPassword1">Expenses</label>
-                    <label class="radio-inline"><input type="radio" value="actual" class="modal-radio"name="percent"/> Actual</label>
-                    <label class="radio-inline"><input type="radio" name="percent"class="modal-radio"value="forty"/> 40%</label>
-                    <input type="number" class="form-control"id="expense-input" placeholder="Please input amount"/>
+                    <label class="radio-inline"><input type="radio" value="actual" class="modal-radio" id="actual" name="percent"/> Actual</label>
+                    <label class="radio-inline"><input type="radio" name="percent" class="modal-radio" id="forty" value="forty"/> 40%</label>
+                    <input type="number" class="form-control" id="expense-input" placeholder="Please input amount"/>
                   </div>
                 </form>
                 

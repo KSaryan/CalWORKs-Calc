@@ -171,8 +171,10 @@ class SeleniumTests(TestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
 
+
     def tearDown(self):
         self.browser.quit()
+
 
     def test_intake_form(self):
         """tests in infro from intake form shows up in modal"""
@@ -206,6 +208,7 @@ class SeleniumTests(TestCase):
         result = self.browser.find_element_by_class_name('countyinfo')
         self.assertEqual(result.text, "San-Francisco")
 
+
     def test_intake_form_county_no_dash(self):
         """tests if county showing up correctly in modal"""
 
@@ -219,6 +222,7 @@ class SeleniumTests(TestCase):
 
         result = self.browser.find_element_by_class_name('countyinfo')
         self.assertEqual(result.text, "San-Francisco")
+
 
     def test_intake_form_empty_fields(self):
         """tests what happens if leave forms blank"""
@@ -249,6 +253,7 @@ class SeleniumTests(TestCase):
         result = self.browser.find_element_by_class_name('countyinfo')
         self.assertEqual(result.text, "other")
 
+
     def test_fam_form_number_of_fam_dropdown(self):
         """tests if fam-mems-select dropdown properly changes the number of forms displayed"""
 
@@ -259,8 +264,6 @@ class SeleniumTests(TestCase):
         result = self.browser.find_element_by_id("fam-mems")
         self.assertIn("Family Member 4", result.text)
 
-        self.browser.get('http://localhost:5000/passed_gross_income_test')
-
         self.browser.find_element_by_xpath("//select[@name='fam-mems-select']/option[text()='2']").click()
 
         result = self.browser.find_element_by_id("fam-mems")
@@ -268,6 +271,16 @@ class SeleniumTests(TestCase):
 
         result = self.browser.find_element_by_id("fam-mems")
         self.assertNotIn("Family Member 4", result.text)
+
+        # testting if modal also properly updated
+        self.browser.find_element_by_xpath("//select[@name='county']/option[text()='Napa']").click()
+        btn = self.browser.find_element_by_id('calc-btn')
+        btn.click()
+
+        result = self.browser.find_element_by_id('fam-modal')
+        self.assertIn("2", result.text)
+        self.assertNotIn("4", result.text)
+
 
     def test_skip_intake_form(self):
         """tests if clicking skip link allows skip intake form"""
@@ -279,6 +292,37 @@ class SeleniumTests(TestCase):
 
         result = self.browser.find_element_by_class_name('fake-legend')
         self.assertIn('Individual Family Member Info', result.text)
+
+
+    def test_self_emp_modal(self):
+        """tests self-employment modal functionality"""
+
+        self.browser.get('http://localhost:5000/passed_gross_income_test')
+  
+        # open modal
+        tooltip = self.browser.find_element_by_class_name('selfemptip')
+        tooltip.click()
+        earnings = self.browser.find_element_by_id('earnings-self-emp')
+        earnings.send_keys("400")
+        # click actual
+        self.browser.find_element_by_id('actual').click();
+        # value of expenses when choose actual should be empty
+        result = self.browser.find_element_by_id("expense-input")
+        val = result.get_attribute('value')
+        self.assertEqual("", val)
+
+        # see if expenses autofilled with forty chosen
+        self.browser.find_element_by_id('forty').click();
+        result = self.browser.find_element_by_id("expense-input")
+        val = result.get_attribute('value')
+        self.assertEqual("160", val)
+
+        # click calculate button
+        btn = self.browser.find_element_by_id('self-emp-btn')
+        btn.click()
+        # see if result displayed in div
+        result = self.browser.find_element_by_id('displayIncome')
+        self.assertIn('Add $240.00 to your monthly income', result.text)
 
 
 
